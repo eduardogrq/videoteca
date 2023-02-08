@@ -1,0 +1,58 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-videoteca-dev-172042-authRole",
+      "UnauthRoleArn": "arn:aws:iam::324115704469:role/amplify-videoteca-dev-172042-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::324115704469:role/amplify-videoteca-dev-172042-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-videoteca-dev-172042-deployment",
+      "UnauthRoleName": "amplify-videoteca-dev-172042-unauthRole",
+      "StackName": "amplify-videoteca-dev-172042",
+      "StackId": "arn:aws:cloudformation:us-east-1:324115704469:stack/amplify-videoteca-dev-172042/364b85f0-a807-11ed-b7dc-12e4641f457d",
+      "AmplifyAppId": "dhsmiigruw8ix"
+    }
+  },
+  "auth": {
+    "videoteca2c5b6ad0": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false,
+      "frontendAuthConfig": {
+        "socialProviders": [],
+        "usernameAttributes": [
+          "EMAIL"
+        ],
+        "signupAttributes": [
+          "EMAIL"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyMinLength": 8,
+          "passwordPolicyCharacters": []
+        },
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-videoteca-dev-172042-deployment/amplify-cfn-templates/auth/videoteca2c5b6ad0-cloudformation-template.json",
+        "logicalId": "authvideoteca2c5b6ad0"
+      },
+      "lastPushTimeStamp": "2023-02-08T23:28:58.096Z",
+      "output": {
+        "UserPoolId": "us-east-1_BABL3pSW3",
+        "AppClientIDWeb": "5cvuga7o5sem7dhi64kntfmu1",
+        "AppClientID": "6e7lj50oe3imehjsjcf83v6tv5",
+        "IdentityPoolId": "us-east-1:ee0611cc-798a-4e75-ac88-449153c50297",
+        "UserPoolArn": "arn:aws:cognito-idp:us-east-1:324115704469:userpool/us-east-1_BABL3pSW3",
+        "IdentityPoolName": "videoteca2c5b6ad0_identitypool_2c5b6ad0__dev",
+        "UserPoolName": "videoteca2c5b6ad0_userpool_2c5b6ad0"
+      },
+      "lastPushDirHash": "BOPGcy0hPXbp+jjIZtg692fNwVQ="
+    }
+  }
+}
