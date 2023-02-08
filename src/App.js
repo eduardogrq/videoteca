@@ -1,16 +1,10 @@
 
-
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <nav>
-          <ul>
-            <li>Hello first</li>
-            <li>Hello first</li>
-          </ul>
-        </nav>
-      </header>
+      <h1 className="text-3xl font-bold underline">
+        Hello world!
+      </h1>
     </div>
   );
 }
