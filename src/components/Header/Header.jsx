@@ -1,13 +1,18 @@
+import { Link } from "react-router-dom";
+
 
 const Header = () => {
     return (
-        <header className="flex justify-around p-3 bg-slate-200">
-            <h2 className="text-2xl font-bold">Mi logo</h2>
-            <ul className="flex gap-3">
+        <header className="bg-slate-200">
+            <nav className="container mx-auto py-4 flex justify-between items-center">
+                <h2 className="text-2xl font-bold">Mi logo</h2>
+                <ul className="flex gap-3">
 
-                <li>Primer link</li>
-                <li>Primer link</li>
-            </ul>
+                    <li><Link to="/">Home</Link></li>
+                    <li><Link to="/login">Entrar</Link></li>
+
+                </ul>
+            </nav>
         </header>
     )
 }
