@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-videoteca-dev-172042-authRole",
+      "UnauthRoleArn": "arn:aws:iam::324115704469:role/amplify-videoteca-dev-172042-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::324115704469:role/amplify-videoteca-dev-172042-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-videoteca-dev-172042-deployment",
+      "UnauthRoleName": "amplify-videoteca-dev-172042-unauthRole",
+      "StackName": "amplify-videoteca-dev-172042",
+      "StackId": "arn:aws:cloudformation:us-east-1:324115704469:stack/amplify-videoteca-dev-172042/364b85f0-a807-11ed-b7dc-12e4641f457d",
+      "AmplifyAppId": "dhsmiigruw8ix"
+    }
+  }
+}
