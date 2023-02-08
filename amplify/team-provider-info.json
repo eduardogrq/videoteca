@@ -10,6 +10,11 @@
       "StackName": "amplify-videoteca-dev-172042",
       "StackId": "arn:aws:cloudformation:us-east-1:324115704469:stack/amplify-videoteca-dev-172042/364b85f0-a807-11ed-b7dc-12e4641f457d",
       "AmplifyAppId": "dhsmiigruw8ix"
+    },
+    "categories": {
+      "auth": {
+        "videoteca2c5b6ad0": {}
+      }
     }
   }
 }
