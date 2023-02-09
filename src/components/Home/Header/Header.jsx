@@ -7,7 +7,6 @@ const Header = () => {
             <nav className="container mx-auto py-4 flex justify-between items-center">
                 <h2 className="text-2xl font-bold">Mi logo</h2>
                 <ul className="flex gap-3">
-                    <li><Link to="/">Home</Link></li>
                     <li><Link to="/dashboard">Dashboard</Link></li>
                 </ul>
             </nav>
