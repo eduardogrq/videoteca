@@ -1,14 +1,14 @@
+
 import { Routes, Route } from "react-router-dom";
-import Login from "./components/Auth/Login/Login";
 import Home from "./components/Home/Home";
+import Dashboard from "./components/Dashboard/Dashboard";
 
 function App() {
   return (
-    <div className="container mx-auto">
+    <div>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-
+        <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
     </div>
   );
