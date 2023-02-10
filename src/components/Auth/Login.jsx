@@ -17,12 +17,11 @@ const Login = () => {
 
         try{
             let response = await Auth.signIn(email, password);
-            console.log("🚀 ~ file: Login.jsx:19 ~ handleSubmit ~ response", response)
-            
-        }catch(err){
-            console.log("🚀 ~ file: Login.jsx:22 ~ handleSubmit ~ err", err)
-        }
+            console.log("🚀 ~ file: Login.jsx:20 ~ handleSubmit ~ response", response)
 
+        }catch(err){
+            console.log("🚀 ~ err", err.message)
+        }
     }
 
     return (

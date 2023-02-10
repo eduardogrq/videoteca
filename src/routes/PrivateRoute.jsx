@@ -1,13 +1,13 @@
 
 import { Navigate, Outlet } from 'react-router-dom';
-import { Auth } from 'aws-amplify';
+import { useEffect, useState } from 'react';
 
 const PrivateRoute = () => {
 
-    const auth = {token: false}
+    
 
-    return(
-        auth.token ? <Outlet /> : <Navigate to="/login"/>
+    return (
+        true ? <Outlet /> : <Navigate to="/login" />
     )
 }
 
