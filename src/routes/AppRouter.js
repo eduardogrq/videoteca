@@ -5,6 +5,8 @@ import Dashboard from "./../components/Dashboard/Dashboard";
 import Login from "./../components/Auth/Login";
 import Register from "./../components/Auth/Register";
 import PrivateRoute from "./PrivateRoute";
+import { useEffect, useState } from "react";
+import { Auth } from "aws-amplify";
 
 const AppRouter = () => {
 
