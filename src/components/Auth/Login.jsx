@@ -2,6 +2,7 @@
 import { Amplify, Auth } from 'aws-amplify';
 import awsconfig from '../../aws-exports';
 import bgImage from './../../images/bg-login.png';
+import logo from './../../images/logo-siayec.png';
 import { useState } from 'react';
 
 Amplify.configure(awsconfig);
@@ -29,15 +30,14 @@ const Login = () => {
             <section className="w-1/2 h-full">
                 <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
                     <a href="#" className="flex items-center mb-6 text-2xl font-semibold text-gray-900">
-                        <img className="w-8 h-8 mr-2" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg" alt="logo" />
-                        Flowbite
+                        <img className="w-36 h-28" src={logo} alt="logo" />
                     </a>
                     <div className="w-full bg-white rounded-lg shadow-lg md:mt-0 sm:max-w-md xl:p-0">
                         <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                             <h1 className="text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
                                 Iniciar Sesión
                             </h1>
-                            <form className="space-y-4 md:space-y-6" onClick={handleSubmit}>
+                            <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
                                 <div>
                                     <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900">Correo electrónico</label>
                                     <input 
