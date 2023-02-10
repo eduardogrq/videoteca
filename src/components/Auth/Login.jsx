@@ -1,5 +1,5 @@
 
-import { Amplify, Auth, Hub } from 'aws-amplify';
+import { Amplify, Auth } from 'aws-amplify';
 import awsconfig from '../../aws-exports';
 import bgImage from './../../images/bg-login.png';
 import { useState } from 'react';
@@ -7,6 +7,22 @@ import { useState } from 'react';
 Amplify.configure(awsconfig);
 
 const Login = () => {
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const handleSubmit = async(event) => {
+        event.preventDefault();
+
+        try{
+            let response = await Auth.signIn(email, password);
+            console.log("🚀 ~ file: Login.jsx:19 ~ handleSubmit ~ response", response)
+            
+        }catch(err){
+            console.log("🚀 ~ file: Login.jsx:22 ~ handleSubmit ~ err", err)
+        }
+
+    }
 
     return (
         <div className="flex h-screen">
@@ -21,14 +37,32 @@ const Login = () => {
                             <h1 className="text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
                                 Iniciar Sesión
                             </h1>
-                            <form className="space-y-4 md:space-y-6" action="#">
+                            <form className="space-y-4 md:space-y-6" onClick={handleSubmit}>
                                 <div>
                                     <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900">Correo electrónico</label>
-                                    <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="john@email.com" required="" />
+                                    <input 
+                                        type="email" 
+                                        name="email" 
+                                        id="email" 
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" 
+                                        placeholder="john@email.com" 
+                                        required="" 
+                                        value={email}
+                                        onChange={(event) => setEmail(event.target.value)}    
+                                    />
                                 </div>
                                 <div>
                                     <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 ">Contraseña</label>
-                                    <input type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" required="" />
+                                    <input 
+                                        type="password" 
+                                        name="password" 
+                                        id="password" 
+                                        placeholder="••••••••" 
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" 
+                                        required="" 
+                                        value={password}
+                                        onChange={(event) => setPassword(event.target.value)}    
+                                        />
                                 </div>
                                 <div className="flex items-center justify-between">
                                     <div className="flex items-start">
@@ -47,7 +81,7 @@ const Login = () => {
                                 <hr />
                                 {/* <button type="submit" className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 pb-2.5 text-center">Sign in</button> */}
                                 <p className="text-sm text-center font-light text-gray-500">
-                                    ¿Aún no tienes cuenta? <a href="#" className="font-medium text-blue-500 hover:underline">Regístrate</a>
+                                    ¿Aún no tienes cuenta? <a href="#" className="font-medium text-blue-500 hover:underline">Regístrate aquí</a>
                                 </p>
                             </form>
                         </div>
