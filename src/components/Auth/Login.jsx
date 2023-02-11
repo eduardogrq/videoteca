@@ -3,7 +3,8 @@ import { Amplify, Auth } from 'aws-amplify';
 import awsconfig from '../../aws-exports';
 import bgImage from './../../images/bg-login.png';
 import logo from './../../images/logo-siayec.png';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { DataContext } from '../../context/DataContext';
 
 Amplify.configure(awsconfig);
 
@@ -11,17 +12,24 @@ const Login = () => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const { userData, setUserData } = useContext(DataContext)
 
     const handleSubmit = async(event) => {
         event.preventDefault();
 
         try{
             let response = await Auth.signIn(email, password);
+            setUserData(response)
             console.log("🚀 ~ file: Login.jsx:20 ~ handleSubmit ~ response", response)
 
         }catch(err){
             console.log("🚀 ~ err", err.message)
         }
+    }
+
+    const signOut = async() => {
+        await Auth.signOut()
+        setUserData(null)
     }
 
     return (
@@ -34,8 +42,9 @@ const Login = () => {
                     <div className="w-full bg-white rounded-lg shadow-lg md:mt-0 sm:max-w-md xl:p-0">
                         <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                             <h1 className="text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
-                                Iniciar Sesión
+                                Iniciar Sesión {userData?.attributes?.email}
                             </h1>
+                            <button className='btn button-blue' onClick={signOut}>Cerrar sesión</button>
                             <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
                                 <div>
                                     <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900">Correo electrónico</label>
