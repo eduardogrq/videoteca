@@ -14,20 +14,19 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const { userData, setUserData } = useContext(DataContext)
 
-    const handleSubmit = async(event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
 
-        try{
+        try {
             let response = await Auth.signIn(email, password);
             setUserData(response)
-            console.log("🚀 ~ file: Login.jsx:20 ~ handleSubmit ~ response", response)
 
-        }catch(err){
+        } catch (err) {
             console.log("🚀 ~ err", err.message)
         }
     }
 
-    const signOut = async() => {
+    const signOut = async () => {
         await Auth.signOut()
         setUserData(null)
     }
@@ -42,35 +41,35 @@ const Login = () => {
                     <div className="w-full bg-white rounded-lg shadow-lg md:mt-0 sm:max-w-md xl:p-0">
                         <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                             <h1 className="text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
-                                Iniciar Sesión {userData?.attributes?.email}
+                                Iniciar Sesión
                             </h1>
                             <button className='btn button-blue' onClick={signOut}>Cerrar sesión</button>
                             <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
                                 <div>
                                     <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900">Correo electrónico</label>
-                                    <input 
-                                        type="email" 
-                                        name="email" 
-                                        id="email" 
-                                        className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" 
-                                        placeholder="john@email.com" 
-                                        required="" 
+                                    <input
+                                        type="email"
+                                        name="email"
+                                        id="email"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                        placeholder="john@email.com"
+                                        required=""
                                         value={email}
-                                        onChange={(event) => setEmail(event.target.value)}    
+                                        onChange={(event) => setEmail(event.target.value)}
                                     />
                                 </div>
                                 <div>
                                     <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 ">Contraseña</label>
-                                    <input 
-                                        type="password" 
-                                        name="password" 
-                                        id="password" 
-                                        placeholder="••••••••" 
-                                        className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" 
-                                        required="" 
+                                    <input
+                                        type="password"
+                                        name="password"
+                                        id="password"
+                                        placeholder="••••••••"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                        required=""
                                         value={password}
-                                        onChange={(event) => setPassword(event.target.value)}    
-                                        />
+                                        onChange={(event) => setPassword(event.target.value)}
+                                    />
                                 </div>
                                 <div className="flex items-center justify-between">
                                     <div className="flex items-start">
