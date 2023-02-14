@@ -10,10 +10,14 @@ Amplify.configure(awsconfig);
 
 const Login = () => {
 
+    // Variables to get user login fields
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    //Using context to get and set UserData
     const { userData, setUserData } = useContext(DataContext)
 
+    // Submit function that use Auth from amplify and set userData in userData Context
     const handleSubmit = async (event) => {
         event.preventDefault();
 
@@ -26,6 +30,7 @@ const Login = () => {
         }
     }
 
+    // Provitional function to singOut, only for proobs
     const signOut = async () => {
         await Auth.signOut()
         setUserData(null)
@@ -70,6 +75,7 @@ const Login = () => {
                                         value={password}
                                         onChange={(event) => setPassword(event.target.value)}
                                     />
+
                                 </div>
                                 <div className="flex items-center justify-between">
                                     <div className="flex items-start">
