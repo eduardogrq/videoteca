@@ -1,5 +1,5 @@
 
-import bgImage from './../../../images/bg-login.png';
+import bgImage from './../../../assets/images/bg-login.png';
 import LoginForm from './LoginForm';
 
 const Login = () => {

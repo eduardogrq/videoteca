@@ -5,8 +5,8 @@ import awsconfig from '../../../aws-exports';
 
 import { useContext, useState } from 'react';
 import { DataContext } from '../../../context/DataContext';
-import ErrorAlert from '../../common/alerts/ErrorAlert';
-import logo from './../../../images/logo-siayec.png';
+import ErrorAlert from '../../../components/common/alerts/ErrorAlert';
+import logo from './../../../assets/images/logo-siayec.png';
 
 Amplify.configure(awsconfig);
 

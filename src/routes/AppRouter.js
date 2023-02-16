@@ -1,11 +1,11 @@
 
 import { Routes, Route } from "react-router-dom";
 import {DataProvider} from './../context/DataContext.js'
-import Home from "../components/pages/Home/Home";
-import Dashboard from "../components/pages/Dashboard/Dashboard";
+import Home from "../pages/Home/Home";
+import Dashboard from "../pages/Dashboard/Dashboard";
 import PrivateRoute from "./PrivateRoute";
-import Login from "../components/auth/Login/Login";
-import Register from "../components/auth/Register/Register";
+import Login from "../pages/auth/Login/Login";
+import Register from "../pages/auth/Register/Register"
 
 const AppRouter = () => {
 
