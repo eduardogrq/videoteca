@@ -53,13 +53,12 @@ const LoginForm = () => {
                             title="Correo electrónico"
                             value={email}
                             setValue={setEmail}
-                            required
                         />
 
                         {/* Password input */}
                         <InputForm
                             name="password"
-                            placeholder="••••••••"
+                            placeholder="Escribe tu contraseña"
                             type="password"
                             title="Contraseña"
                             value={password}
@@ -72,7 +71,11 @@ const LoginForm = () => {
                         <div className="flex items-center justify-between">
                             <div className="flex items-start">
                                 <div className="flex items-center h-5">
-                                    <input id="remember" aria-describedby="remember" type="checkbox" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 " required="" />
+                                    <input id="remember" 
+                                        aria-describedby="remember" 
+                                        type="checkbox" 
+                                        className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 "
+                                    />
                                 </div>
                                 <div className="ml-3 text-sm">
                                     <label htmlFor="remember" className="text-gray-500">Recordar sesión</label>
@@ -84,7 +87,6 @@ const LoginForm = () => {
                             <button className='bg-blue-500 w-full hover:bg-blue-700 text-white font-bold py-3 rounded'>Entrar</button>
                         </div>
                         <hr />
-                        {/* <button type="submit" className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 pb-2.5 text-center">Sign in</button> */}
                         <p className="text-sm text-center font-light text-gray-500">
                             ¿Aún no tienes cuenta? <a href="#" className="font-medium text-blue-500 hover:underline">Regístrate aquí</a>
                         </p>
