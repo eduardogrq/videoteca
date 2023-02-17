@@ -2,11 +2,11 @@
 
 import { Auth, Amplify } from 'aws-amplify';
 import awsconfig from '../../../aws-exports';
-
 import { useContext, useState } from 'react';
 import { DataContext } from '../../../context/DataContext';
 import ErrorAlert from '../../../components/common/alerts/ErrorAlert';
 import logo from './../../../assets/images/logo-siayec.png';
+import InputForm from '../../../components/form/InputForm';
 
 Amplify.configure(awsconfig);
 
@@ -44,33 +44,27 @@ const LoginForm = () => {
                     </h1>
 
                     <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
-                        <div>
-                            <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900">Correo electrónico</label>
-                            <input
-                                type="text"
-                                name="email"
-                                id="email"
-                                className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                                placeholder="john@email.com"
-                                required=""
-                                value={email}
-                                onChange={(event) => setEmail(event.target.value)}
-                            />
-                        </div>
-                        <div>
-                            <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 ">Contraseña</label>
-                            <input
-                                type="password"
-                                name="password"
-                                id="password"
-                                placeholder="••••••••"
-                                className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                                required=""
-                                value={password}
-                                onChange={(event) => setPassword(event.target.value)}
-                            />
 
-                        </div>
+                        {/* Email input */}
+                        <InputForm
+                            name="email"
+                            placeholder="john@email.com"
+                            type="email"
+                            title="Correo electrónico"
+                            value={email}
+                            setValue={setEmail}
+                            required
+                        />
+
+                        {/* Password input */}
+                        <InputForm
+                            name="password"
+                            placeholder="••••••••"
+                            type="password"
+                            title="Contraseña"
+                            value={password}
+                            setValue={setPassword}
+                        />
 
                         {/* Message error */}
                         {error && <ErrorAlert error={error} />}

@@ -1,16 +1,16 @@
 
 import React, { useState, useContext } from "react"
 import { Auth } from "aws-amplify"
-import { DataContext } from "../../context/DataContext"
+import { DataContext } from "../../context/DataContext.js"
 
 const Dashboard = () => {
 
-    const {userData, setUserdata} = useContext(DataContext)
+    const {userData, setUserData} = useContext(DataContext)
 
     // Provitional function to singOut, only for proobs
     const signOut = async () => {
         await Auth.signOut()
-        setUserdata(null)
+        setUserData(null)
     }
 
     return (
