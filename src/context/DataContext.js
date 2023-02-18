@@ -13,8 +13,8 @@ const useUserData = () => {
             try{
                 let response = await Auth.currentAuthenticatedUser();
                 setUserData(response)
-            } catch(e){
-                console.log("🚀 ~ file: dataContext.js:16 ~ useUserData ~ e", e)
+            } catch(err){
+                console.error("🚀 ~ file: dataContext.js:16 ~ useUserData ~ err", err)
             }
         };
         fetchData();
