@@ -4,6 +4,8 @@ import { Auth, Amplify } from 'aws-amplify';
 import awsconfig from '../../../aws-exports';
 import { useContext, useState } from 'react';
 import { DataContext } from '../../../context/DataContext';
+import { useNavigate } from 'react-router-dom';
+
 import ErrorAlert from '../../../components/common/alerts/ErrorAlert';
 import logo from './../../../assets/images/logo-siayec.png';
 import InputForm from '../../../components/form/InputForm';
@@ -18,6 +20,7 @@ const LoginForm = () => {
 
     //Using context to get and set UserData
     const { userData, setUserData } = useContext(DataContext)
+    const navigate = useNavigate();
 
     // Submit function that use Auth from amplify and set userData in userData Context
     const handleSubmit = async (event) => {
@@ -25,8 +28,8 @@ const LoginForm = () => {
 
         try {
             let response = await Auth.signIn(email, password);
-            setUserData(response)
-
+            setUserData(response);
+            navigate('/dashboard');
         } catch (err) {
             setError(err.message)
         }
