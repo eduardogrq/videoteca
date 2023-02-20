@@ -32,7 +32,7 @@ const InputForm = ({ id, name, type, title, placeholder, required, setValue, val
                         />
                         <label className="rounded px-2 py-1 text-sm text-gray-600 font-mono cursor-pointer js-password-label" htmlFor="toggle">
                             {/* Show and Hide password icon */}
-                            {isHidden ? <HideViewIcon /> : <ViewIcon />}
+                            {isHidden ? <HideViewIcon fillColor="blue-500"/> : <ViewIcon />}
                         </label>
                     </div>
                 }
