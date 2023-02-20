@@ -5,7 +5,6 @@ import awsconfig from '../../../aws-exports';
 import { useContext, useState } from 'react';
 import { DataContext } from '../../../context/DataContext';
 import { useNavigate } from 'react-router-dom';
-
 import ErrorAlert from '../../../components/common/alerts/ErrorAlert';
 import logo from './../../../assets/images/logo-siayec.png';
 import InputForm from '../../../components/form/InputForm';
@@ -74,9 +73,9 @@ const LoginForm = () => {
                         <div className="lg:flex items-center justify-between">
                             <div className="flex items-start">
                                 <div className="flex items-center h-5">
-                                    <input id="remember" 
-                                        aria-describedby="remember" 
-                                        type="checkbox" 
+                                    <input id="remember"
+                                        aria-describedby="remember"
+                                        type="checkbox"
                                         className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 "
                                     />
                                 </div>
