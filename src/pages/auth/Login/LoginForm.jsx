@@ -4,7 +4,7 @@ import { Auth, Amplify } from 'aws-amplify';
 import awsconfig from '../../../aws-exports';
 import { useContext, useState } from 'react';
 import { DataContext } from '../../../context/DataContext';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import ErrorAlert from '../../../components/common/alerts/ErrorAlert';
 import logo from './../../../assets/images/logo-siayec.png';
 import InputForm from '../../../components/form/InputForm';
@@ -36,9 +36,9 @@ const LoginForm = () => {
 
     return (
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-            <a href="#" className="flex items-center mb-6 text-2xl font-semibold text-gray-900">
+            <Link to="/" className="flex items-center mb-6 text-2xl font-semibold text-gray-900">
                 <img className="w-36 h-28" src={logo} alt="logo" />
-            </a>
+            </Link>
             <div className="w-full bg-white rounded-lg shadow-lg md:mt-0 sm:max-w-md xl:p-0">
                 <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                     <h1 className="text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
@@ -83,14 +83,14 @@ const LoginForm = () => {
                                     <label htmlFor="remember" className="text-gray-500">Recordar sesión</label>
                                 </div>
                             </div>
-                            <a href="#" className="text-sm font-medium bluetext text-blue-500 hover:underline">¿Olvidaste tu contraseña?</a>
+                            <Link to="/forgot-password" className="text-sm font-medium bluetext text-blue-500 hover:underline">¿Olvidaste tu contraseña?</Link>
                         </div>
                         <div>
                             <button className='bg-blue-500 w-full hover:bg-blue-700 text-white font-bold py-3 rounded'>Entrar</button>
                         </div>
                         <hr />
                         <p className="text-sm text-center font-light text-gray-500">
-                            ¿Aún no tienes cuenta? <a href="#" className="font-medium text-blue-500 hover:underline">Regístrate aquí</a>
+                            ¿Aún no tienes cuenta? <Link to="/register" className="font-medium text-blue-500 hover:underline">Regístrate aquí</Link>
                         </p>
                     </form>
                 </div>
