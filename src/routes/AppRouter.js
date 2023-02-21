@@ -6,8 +6,8 @@ import PrivateRoute from "./PrivateRoute";
 // Pages routes
 import Home from "../pages/Home/Home";
 import Dashboard from "../pages/Dashboard/Dashboard";
-import Login from "../pages/auth/Login/Login";
-import Register from "../pages/auth/Register/Register"
+
+import {Login, Register, PasswordRecovery} from "../pages/auth/index.js"
 import Loader from '../components/common/Loader.jsx';
 
 const AppRouter = () => {
@@ -29,6 +29,7 @@ const AppRouter = () => {
                 {/* Conditional to check if user is authenticated then returns to dashboard, otherwise redirect to login or register */}
                 <Route path="/login" element={ isAuthenticated ? <Dashboard /> : <Login /> } />
                 <Route path="/register" element={isAuthenticated ?  <Dashboard /> : <Register /> } />
+                <Route path="/forgot-password" element={isAuthenticated ?  <Dashboard /> : <PasswordRecovery /> } />
                 <Route element={<PrivateRoute />}>
                     <Route path="/dashboard" element={<Dashboard />} />
                 </Route>

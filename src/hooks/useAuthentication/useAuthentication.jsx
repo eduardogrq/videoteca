@@ -16,7 +16,7 @@ const useAuthentication = () => {
             await Auth.currentAuthenticatedUser()
             setIsAuthenticated(true)
         } catch(err){
-            console.error(err)
+            console.log("🚀 ~ file: useAuthentication.jsx:19 ~ checkAuthStatus ~ err:", err)
         } finally{
             setIsAuthenticating(false)
         }
