@@ -10,7 +10,7 @@ import Loader from "../../../components/common/Loader"
 const PasswordRecovery = () => {
 
     const [error, setError] = useState('')
-    const [loaging, setLoading] = useState('')
+    const [loading, setLoading] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [code, setCode] = useState('')
@@ -30,19 +30,20 @@ const PasswordRecovery = () => {
         }
     }
 
-    const handleForgotPasswordSubmit = async () => {
+    const handlePasswordResetSubmit = async () => {
         setLoading(true)
         try {
             await Auth.forgotPasswordSubmit(email, code, password)
             setStep(3)
         } catch (err) {
+            setError(err.message)
             console.log("🚀 ~ file: PasswordRecovery.jsx:37 ~ handleForgotPasswordSubmit ~ err:", err)
         } finally {
             setLoading(false)
         }
     }
 
-    if (loaging) {
+    if (loading) {
         return <Loader />
     }
 
@@ -55,13 +56,13 @@ const PasswordRecovery = () => {
 
                             {step === 1 &&
                                 <div>
-                                    <h1 className="text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl mb-3">
-                                        ¿Tienes problemas para iniciar sesión?
+                                    <h1 className="text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl mb-5">
+                                        ¿Has olvidado tu contraseña?
                                     </h1>
 
                                     <div className="space-y-4 md:space-y-6">
 
-                                        <p className="text-sm mb-3">Ingresa tu correo electrónico y te enviaremos un enlace para que recuperes el acceso a tu cuenta.</p>
+                                        <p className="text-sm mb-1">Ingresa tu correo electrónico y te enviaremos un enlace para que recuperes el acceso a tu cuenta.</p>
                                         {/* Email input */}
                                         <InputForm
                                             name="email"
@@ -122,7 +123,7 @@ const PasswordRecovery = () => {
 
                                         <div>
                                             <button
-                                                onClick={handleForgotPasswordSubmit}
+                                                onClick={handlePasswordResetSubmit}
                                                 className='bg-blue-500 w-full hover:bg-blue-700 text-white font-bold py-3 rounded'>
                                                 Enviar
                                             </button>
