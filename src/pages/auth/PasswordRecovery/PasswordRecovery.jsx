@@ -21,6 +21,7 @@ const PasswordRecovery = () => {
         setLoading(true)
         try {
             await Auth.forgotPassword(email)
+            setError('')
             setStep(2)
         } catch (err) {
             setError(err.message)
