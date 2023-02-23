@@ -15,7 +15,7 @@ const PasswordRecovery = () => {
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
     const [code, setCode] = useState('')
-    const [step, setStep] = useState(2)
+    const [step, setStep] = useState(1)
 
     const handleForgotPassword = async () => {
         setLoading(true)
@@ -32,15 +32,22 @@ const PasswordRecovery = () => {
     }
 
     const handlePasswordResetSubmit = async () => {
-        setLoading(true)
-        try {
-            await Auth.forgotPasswordSubmit(email, code, password)
-            setStep(3)
-        } catch (err) {
-            setError(err.message)
-            console.log("🚀 ~ file: PasswordRecovery.jsx:37 ~ handleForgotPasswordSubmit ~ err:", err)
-        } finally {
-            setLoading(false)
+
+        // Conditional to check if password and confirm password are equal, otherwise send error that passwords do not match
+        if (password === confirmPassword) {
+            setLoading(true)
+            try {
+                await Auth.forgotPasswordSubmit(email, code, password)
+                setStep(3)
+            } catch (err) {
+                setError(err.message)
+                console.log("🚀 ~ file: PasswordRecovery.jsx:37 ~ handleForgotPasswordSubmit ~ err:", err)
+            } finally {
+                setLoading(false)
+            }
+        }
+        else {
+            setError('Passwords do not match')
         }
     }
 
@@ -61,13 +68,13 @@ const PasswordRecovery = () => {
                                 <div>
 
                                     <div className="flex mb-5">
-                                        <Link to="/login" class="h-6 md:h-8 w-6 md:w-8 md:absolute flex items-center text-center">
-                                            <svg fill="none" className='w-4 h-4' stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path>
+                                        <Link to="/login" className="h-6 md:h-8 w-6 md:w-8 md:absolute flex items-center text-center">
+                                            <svg fill="none" className='w-4 h-4' stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                                <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path>
                                             </svg>
                                         </Link>
                                         <div className="w-full flex justify-center text-center">
-                                            <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">¿Has olvidado tu contraseña?</h1>
+                                            <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">¿Has olvidado tu contraseña?</h1>
                                         </div>
 
                                     </div>
@@ -161,7 +168,7 @@ const PasswordRecovery = () => {
                                 </div>
                             }
                             {step === 3 &&
-                                <div className="text-center py-5">
+                                <div className="text-center py-5 animate__animated animate__fadeIn">
                                     <span className="text-2xl font-extrabold text-gray-900">Contraseña Actualizada</span>
                                     <div className="flex justify-center my-5">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-28 h-28 fill-green-500 animate__animated animate__flip">
@@ -170,11 +177,6 @@ const PasswordRecovery = () => {
 
                                     </div>
                                     <h2 className="text-sm mb-7 text-gray-900">tu contraseña se actualizó éxitosamente</h2>
-                                    {/* <button
-                                                onClick={handlePasswordResetSubmit}
-                                                className='bg-blue-500 w-full hover:bg-blue-700 text-white font-bold py-3 rounded'>
-                                                Enviar
-                                            </button> */}
                                     <Link to="/login" className='bg-blue-500 w-full hover:bg-blue-700 text-white font-bold py-3 px-5 rounded'>Iniciar sesión</Link>
 
                                 </div>
