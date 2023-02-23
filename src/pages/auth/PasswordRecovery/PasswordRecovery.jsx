@@ -13,8 +13,9 @@ const PasswordRecovery = () => {
     const [loading, setLoading] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [confirmPassword, setConfirmPassword] = useState('')
     const [code, setCode] = useState('')
-    const [step, setStep] = useState(1)
+    const [step, setStep] = useState(2)
 
     const handleForgotPassword = async () => {
         setLoading(true)
@@ -109,14 +110,16 @@ const PasswordRecovery = () => {
                                     </h1>
 
 
-                                    <div className="space-y-4 md:space-y-6">
+                                    <div className="space-y-4">
+
+                                        <p className="text-sm text-gray-900 font-medium text-center">Te enviamos un código para restablecer tu contraseña. Por favor, ingrésalo en el siguiente campo.</p>
 
                                         {/* Email input */}
                                         <InputForm
                                             name="code"
                                             placeholder="Ingresa el código"
                                             type="text"
-                                            title="¡Revisa tu correo! Te enviamos un código para restablecer tu contraseña. Por favor, ingrésalo en el siguiente campo."
+                                            title=""
                                             value={code}
                                             setValue={setCode}
                                         />
@@ -125,9 +128,18 @@ const PasswordRecovery = () => {
                                             name="newPassword"
                                             placeholder="••••••••"
                                             type="password"
-                                            title="Ingresa tu nueva contraseña."
+                                            title="Ingresa tu nueva contraseña"
                                             value={password}
                                             setValue={setPassword}
+                                        />
+
+                                        <InputForm
+                                            name="confirmPassword"
+                                            placeholder="••••••••"
+                                            type="password"
+                                            title="Confirmar contraseña"
+                                            value={confirmPassword}
+                                            setValue={setConfirmPassword}
                                         />
 
                                         {/* Message error */}

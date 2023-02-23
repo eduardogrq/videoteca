@@ -26,13 +26,13 @@ const InputForm = ({ id, name, type, title, placeholder, required, setValue, val
                     <div className="absolute inset-y-0 right-0 flex items-center px-2">
                         <input 
                             className="hidden" 
-                            id="toggle"
+                            id={`toggle${name}`}
                             type="checkbox"
                             onClick={() => setIsHidden(!isHidden)}
                         />
-                        <label className="rounded px-2 py-1 text-sm text-gray-600 font-mono cursor-pointer js-password-label" htmlFor="toggle">
+                        <label className="rounded px-2 py-1 text-sm text-gray-600 font-mono cursor-pointer js-password-label" htmlFor={`toggle${name}`}>
                             {/* Show and Hide password icon */}
-                            {isHidden ? <HideViewIcon fillColor="blue-500"/> : <ViewIcon />}
+                            {isHidden ? <HideViewIcon fillColor="fill-blue-500"/> : <ViewIcon />}
                         </label>
                     </div>
                 }
