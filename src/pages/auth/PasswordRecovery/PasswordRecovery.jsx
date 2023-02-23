@@ -58,13 +58,22 @@ const PasswordRecovery = () => {
 
                             {step === 1 &&
                                 <div>
-                                    <h1 className="text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl mb-5">
-                                        ¿Has olvidado tu contraseña?
-                                    </h1>
 
-                                    <div className="space-y-4 md:space-y-6">
+                                    <div className="flex mb-5">
+                                        <Link to="/login" class="h-6 md:h-8 w-6 md:w-8 md:absolute flex items-center text-center">
+                                            <svg fill="none" className='w-4 h-4' stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path>
+                                            </svg>
+                                        </Link>
+                                        <div className="w-full flex justify-center text-center">
+                                            <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">¿Has olvidado tu contraseña?</h1>
+                                        </div>
 
-                                        <p className="text-sm mb-1">Ingresa tu correo electrónico y te enviaremos un enlace para que recuperes el acceso a tu cuenta.</p>
+                                    </div>
+
+                                    <div className="space-y-4">
+
+                                        <p className="text-sm">Ingresa tu correo electrónico y te enviaremos un enlace para que recuperes el acceso a tu cuenta.</p>
                                         {/* Email input */}
                                         <InputForm
                                             name="email"
@@ -154,8 +163,8 @@ const PasswordRecovery = () => {
                                                 className='bg-blue-500 w-full hover:bg-blue-700 text-white font-bold py-3 rounded'>
                                                 Enviar
                                             </button> */}
-                                            <Link to="/login" className='bg-blue-500 w-full hover:bg-blue-700 text-white font-bold py-3 px-5 rounded'>Iniciar sesión</Link>
-                                    
+                                    <Link to="/login" className='bg-blue-500 w-full hover:bg-blue-700 text-white font-bold py-3 px-5 rounded'>Iniciar sesión</Link>
+
                                 </div>
                             }
 
