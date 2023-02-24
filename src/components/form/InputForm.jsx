@@ -5,7 +5,7 @@ import isFunction from "../../utils/isFunction"
 
 
 
-const InputForm = ({ id, name, type, title, placeholder, required, setValue, value }) => {
+const InputForm = ({ id, name, type, title, placeholder, required, setValue, value, onClickAction }) => {
 
     const [isHidden, setIsHidden] = useState(false)
 
@@ -46,6 +46,7 @@ const InputForm = ({ id, name, type, title, placeholder, required, setValue, val
                     placeholder={placeholder}
                     value={value}
                     onChange={(event) => setValue(event.target.value)}
+                    onClick={onClickAction}
                     autoComplete="false"
                 />
             </div>

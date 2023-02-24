@@ -1,7 +1,7 @@
 
 function isFunction(setValue) {
     if (typeof setValue !== 'function') {
-        throw new Error('useCheckFunctionProp: "setValue" argument must be a function');
+        throw new Error('useCheckFunctionProp: argument must be a function');
     }
 }
 

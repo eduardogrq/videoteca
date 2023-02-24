@@ -15,7 +15,8 @@ const PasswordRecovery = () => {
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
     const [code, setCode] = useState('')
-    const [step, setStep] = useState(1)
+    const [step, setStep] = useState(2)
+    const [isActive, setIsActive] = useState(false)
 
     const handleForgotPassword = async () => {
         setLoading(true)
@@ -52,6 +53,10 @@ const PasswordRecovery = () => {
         }
     }
 
+    function activeInputPassword() {
+        setIsActive(true)
+    }
+
     if (loading) {
         return <Loader />
     }
@@ -66,7 +71,7 @@ const PasswordRecovery = () => {
                         <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
 
                             {step === 1 &&
-                                <div>
+                                <div className="space-y-10 lg:space-y-0">
 
                                     <div className="flex mb-5">
                                         <Link to="/login" className="h-6 md:h-8 w-6 md:w-8 md:absolute flex items-center text-center">
@@ -139,7 +144,33 @@ const PasswordRecovery = () => {
                                             title="Ingresa tu nueva contraseña"
                                             value={password}
                                             setValue={setPassword}
+                                            onClickAction={activeInputPassword}
                                         />
+
+                                        <div className={`pl-4 ${!isActive ? "hidden" : ""}`}>
+                                            <ul className="text-xs">
+                                                <li className="flex items-center"><span className="mr-1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"  className="w-3 h-3 fill-green-500">
+                                                    <path fillRule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clipRule="evenodd" />
+                                                </svg>
+                                                </span>    Longitud mínima de 8 caracteres</li>
+                                                <li className="flex items-center"><span className="mr-1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"  className="w-3 h-3 fill-green-500">
+                                                    <path fillRule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clipRule="evenodd" />
+                                                </svg>
+                                                </span>Al menos una minúscula (a-z)</li>
+                                                <li className="flex items-center"><span className="mr-1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"  className="w-3 h-3 fill-green-500">
+                                                    <path fillRule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clipRule="evenodd" />
+                                                </svg>
+                                                </span>Al menos una mayúscula (A-Z)</li>
+                                                <li className="flex items-center"><span className="mr-1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"  className="w-3 h-3 fill-green-500">
+                                                    <path fillRule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clipRule="evenodd" />
+                                                </svg>
+                                                </span>Al menos un número (0-9)</li>
+                                                <li className="flex items-center"><span className="mr-1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"  className="w-3 h-3 fill-green-500">
+                                                    <path fillRule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clipRule="evenodd" />
+                                                </svg>
+                                                </span>Al menos un caracter especial ($#*%&?!)</li>
+                                            </ul>
+                                        </div>
 
                                         <InputForm
                                             name="confirmPassword"
