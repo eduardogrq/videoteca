@@ -1,5 +1,5 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Auth } from 'aws-amplify';
 import InputForm from '../../../components/form/InputForm';
 import bgImage from './../../../assets/images/bg-login.png';
@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import ErrorAlert from '../../../components/common/alerts/ErrorAlert';
 import Loader from "../../../components/common/Loader"
 import { CheckIcon } from '../../../assets/icons';
+import { containsNumbers } from '../../../utils';
 
 const PasswordRecovery = () => {
 
@@ -26,11 +27,17 @@ const PasswordRecovery = () => {
 
     // password validations
     const [state, setState] = useState({
-        firstValidation: false,
+        containsNumbersValidation: false,
         secondValidation: false,
         thirdValidation: false,
         fourthValidation: false
     })
+
+    useEffect(() => {
+        //conditional to check if password contains at least 1 number
+        setState({...state, containsNumbersValidation: containsNumbers(password) ? true : false})
+        
+    }, [password]);
 
     const handleForgotPassword = async () => {
         setLoading(true)
@@ -67,6 +74,7 @@ const PasswordRecovery = () => {
         }
     }
 
+    // Function to show password validations
     function activeInputPassword() {
         setIsActive(true)
     }
@@ -183,7 +191,7 @@ const PasswordRecovery = () => {
 
                                                 <li className="flex items-center">
                                                     <span className="mr-1">
-                                                        <CheckIcon isChecked={true} />
+                                                        <CheckIcon isChecked={state.containsNumbersValidation} />
                                                     </span>Al menos un número (0-9)
                                                 </li>
 
