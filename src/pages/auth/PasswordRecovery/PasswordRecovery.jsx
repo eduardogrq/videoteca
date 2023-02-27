@@ -34,7 +34,7 @@ const PasswordRecovery = () => {
     })
 
     useEffect(() => {
-        //conditional to check if password contains at least 1 number
+        // conditional to check if password contains at least 1 number
         setState({...state, containsNumbersValidation: containsNumbers(password) ? true : false})
         
     }, [password]);

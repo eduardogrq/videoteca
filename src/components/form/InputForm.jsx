@@ -1,9 +1,7 @@
 
 import { useState } from "react"
 import { ViewIcon, HideViewIcon } from "../../assets/icons"
-import isFunction from "../../utils/isFunction"
-
-
+import { isFunction } from "../../utils"
 
 const InputForm = ({ id, name, type, title, placeholder, required, setValue, value, onClickAction }) => {
 
