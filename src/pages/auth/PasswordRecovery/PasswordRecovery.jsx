@@ -5,9 +5,13 @@ import InputForm from '../../../components/form/InputForm';
 import bgImage from './../../../assets/images/bg-login.png';
 import { Link } from 'react-router-dom';
 import ErrorAlert from '../../../components/common/alerts/ErrorAlert';
-import Loader from "../../../components/common/Loader"
+import Loader from "../../../components/common/Loader";
 import { CheckIcon } from '../../../assets/icons';
-import { containsNumbers } from '../../../utils';
+import {
+    containsNumbers,
+    containsCapitalLetters,
+    containsLowercaseLetters,
+} from '../../../utils';
 
 const PasswordRecovery = () => {
 
@@ -20,23 +24,25 @@ const PasswordRecovery = () => {
     const [step, setStep] = useState(2)
     const [isActive, setIsActive] = useState(false)
 
-    // Contiene al menos 1 número
+    // Contiene al menos 1 número // listo
     // Contiene al menos 1 carácter especial
-    // Contiene al menos una letra mayúscula
-    // Contiene al menos una letra minúscula
+    // Contiene al menos una letra mayúscula // listo
+    // Contiene al menos una letra minúscula // listo
 
     // password validations
-    const [state, setState] = useState({
-        containsNumbersValidation: false,
-        secondValidation: false,
-        thirdValidation: false,
-        fourthValidation: false
-    })
+    const [hasNumbers, setHasNumbers] = useState(false)
+    const [hasCapitalLetters, setHasCapitalLetters] = useState(false)
+    const [hasLowercaseLetters, setHasLowercaseLetters] = useState(false)
 
+    // contains special characters
     useEffect(() => {
-        // conditional to check if password contains at least 1 number
-        setState({...state, containsNumbersValidation: containsNumbers(password) ? true : false})
-        
+        const hasNumbersValidation = containsNumbers(password)
+        const hasCapitalLettersValidation = containsCapitalLetters(password)
+        const hasLowercaseLetterValidation = containsLowercaseLetters(password)
+
+        setHasNumbers(hasNumbersValidation);
+        setHasCapitalLetters(hasCapitalLettersValidation);
+        setHasLowercaseLetters(hasLowercaseLetterValidation)
     }, [password]);
 
     const handleForgotPassword = async () => {
@@ -179,19 +185,19 @@ const PasswordRecovery = () => {
 
                                                 <li className="flex items-center">
                                                     <span className="mr-1">
-                                                        <CheckIcon isChecked={false} />
+                                                        <CheckIcon isChecked={hasLowercaseLetters} />
                                                     </span>Al menos una minúscula (a-z)
                                                 </li>
 
                                                 <li className="flex items-center">
                                                     <span className="mr-1">
-                                                        <CheckIcon isChecked={true} />
+                                                        <CheckIcon isChecked={hasCapitalLetters} />
                                                     </span>Al menos una mayúscula (A-Z)
                                                 </li>
 
                                                 <li className="flex items-center">
                                                     <span className="mr-1">
-                                                        <CheckIcon isChecked={state.containsNumbersValidation} />
+                                                        <CheckIcon isChecked={hasNumbers} />
                                                     </span>Al menos un número (0-9)
                                                 </li>
 
