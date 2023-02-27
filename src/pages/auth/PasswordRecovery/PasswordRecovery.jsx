@@ -11,6 +11,7 @@ import {
     containsNumbers,
     containsCapitalLetters,
     containsLowercaseLetters,
+    containsSpecialChars
 } from '../../../utils';
 
 const PasswordRecovery = () => {
@@ -28,35 +29,44 @@ const PasswordRecovery = () => {
     // Contiene al menos 1 carácter especial
     // Contiene al menos una letra mayúscula // listo
     // Contiene al menos una letra minúscula // listo
+    // Contiene signos especiales: ^ $ * . [ ] { } ( ) ? - " ! @ # % & / \ , > < ' : ; | _ ~ ` + =
 
     // password validations
-    const [hasNumbers, setHasNumbers] = useState(false)
-    const [hasCapitalLetters, setHasCapitalLetters] = useState(false)
-    const [hasLowercaseLetters, setHasLowercaseLetters] = useState(false)
+    const [hasNumbers, setHasNumbers] = useState(false);
+    const [hasCapitalLetters, setHasCapitalLetters] = useState(false);
+    const [hasLowercaseLetters, setHasLowercaseLetters] = useState(false);
+    const [hasSpecialCharacters, setHasSpecialCharacters] = useState(false)
+    const [hasEightChars, setHasEightChars] = useState(false);
 
     // contains special characters
     useEffect(() => {
-        const hasNumbersValidation = containsNumbers(password)
-        const hasCapitalLettersValidation = containsCapitalLetters(password)
-        const hasLowercaseLetterValidation = containsLowercaseLetters(password)
+        const hasNumbersValidation = containsNumbers(password);
+        const hasCapitalLettersValidation = containsCapitalLetters(password);
+        const hasLowercaseLetterValidation = containsLowercaseLetters(password);
+        const hasEightharsValidation = password.length >= 8 ? true : false;
+        const hasSpecialCharactersValidation = containsSpecialChars(password)
 
         setHasNumbers(hasNumbersValidation);
         setHasCapitalLetters(hasCapitalLettersValidation);
-        setHasLowercaseLetters(hasLowercaseLetterValidation)
+        setHasLowercaseLetters(hasLowercaseLetterValidation);
+        setHasSpecialCharacters(hasSpecialCharactersValidation);
+        setHasEightChars(hasEightharsValidation);
+
+        console.log(hasSpecialCharacters, password);
     }, [password]);
 
     const handleForgotPassword = async () => {
-        setLoading(true)
+        setLoading(true);
         try {
-            await Auth.forgotPassword(email)
-            setError('')
-            setStep(2)
+            await Auth.forgotPassword(email);
+            setError('');
+            setStep(2);
         } catch (err) {
-            setError(err.message)
-            setEmail('')
-            console.log("🚀 ~ file: PasswordRecovery.jsx:21 ~ handleForgotPassword ~ err:", err)
+            setError(err.message);
+            setEmail('');
+            console.log("🚀 ~ file: PasswordRecovery.jsx:21 ~ handleForgotPassword ~ err:", err);
         } finally {
-            setLoading(false)
+            setLoading(false);
         }
     }
 
@@ -179,7 +189,7 @@ const PasswordRecovery = () => {
                                             <ul className="text-xs">
                                                 <li className="flex items-center">
                                                     <span className="mr-1">
-                                                        <CheckIcon isChecked={true} />
+                                                        <CheckIcon isChecked={hasEightChars} />
                                                     </span>Longitud mínima de 8 caracteres
                                                 </li>
 
@@ -203,8 +213,11 @@ const PasswordRecovery = () => {
 
                                                 <li className="flex items-center">
                                                     <span className="mr-1">
-                                                        <CheckIcon isChecked={true} />
-                                                    </span>Al menos un caracter especial ($#*%&?!)
+                                                        <CheckIcon isChecked={hasSpecialCharacters} />
+                                                    </span>
+                                                    <span className="underline cursor-pointer">
+                                                        Al menos un caracter especial (^$*.[]{}()?-"!@#%&amp;/\,&gt;&lt;':;|_~`+=)
+                                                    </span>
                                                 </li>
                                             </ul>
                                         </div>
