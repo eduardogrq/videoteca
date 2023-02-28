@@ -23,7 +23,7 @@ const PasswordRecovery = () => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [code, setCode] = useState('');
-    const [step, setStep] = useState(2);
+    const [step, setStep] = useState(1);
 
     // password validations
     const [hasNumbers, setHasNumbers] = useState(false);
