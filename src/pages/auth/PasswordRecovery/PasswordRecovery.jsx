@@ -24,7 +24,6 @@ const PasswordRecovery = () => {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [code, setCode] = useState('');
     const [step, setStep] = useState(2);
-    const [isActive, setIsActive] = useState(false);
 
     // password validations
     const [hasNumbers, setHasNumbers] = useState(false);
@@ -32,8 +31,8 @@ const PasswordRecovery = () => {
     const [hasLowercaseLetters, setHasLowercaseLetters] = useState(false);
     const [hasSpecialCharacters, setHasSpecialCharacters] = useState(false)
     const [hasEightChars, setHasEightChars] = useState(false);
+    const [isValidPassword, setIsValidPassword] = useState(false);
 
-    // contains special characters
     useEffect(() => {
         const hasNumbersValidation = containsNumbers(password);
         const hasCapitalLettersValidation = containsCapitalLetters(password);
@@ -47,8 +46,13 @@ const PasswordRecovery = () => {
         setHasSpecialCharacters(hasSpecialCharactersValidation);
         setHasEightChars(hasEightharsValidation);
 
-        console.log(hasSpecialCharacters, password);
-    }, [password]);
+        setIsValidPassword(false)
+
+        if (hasNumbersValidation && hasCapitalLettersValidation && hasLowercaseLetterValidation && hasEightharsValidation && hasSpecialCharactersValidation && password === confirmPassword && code.length > 2) {
+            setIsValidPassword(true)
+        }
+
+    }, [password, code, confirmPassword]);
 
     // Step 1
     // Function to send code to users email
@@ -87,11 +91,6 @@ const PasswordRecovery = () => {
         else {
             setError('Passwords do not match')
         }
-    }
-
-    // Function to show password validations
-    function activeInputPassword() {
-        setIsActive(true)
     }
 
     // Conditional to show loading spinner if promises are not solved yet
@@ -181,10 +180,9 @@ const PasswordRecovery = () => {
                                             title="Ingresa tu nueva contraseña"
                                             value={password}
                                             setValue={setPassword}
-                                            onClickAction={activeInputPassword}
                                         />
 
-                                        <div className={`pl-4 ${!isActive ? "hidden" : "animate__animated animate__fadeIn"}`}>
+                                        <div className={`pl-4 ${!password ? "hidden" : "animate__animated animate__fadeIn"}`}>
                                             <ul className="text-xs">
                                                 <li className="flex items-center">
                                                     <span className="mr-1">
@@ -236,13 +234,24 @@ const PasswordRecovery = () => {
                                             setValue={setConfirmPassword}
                                         />
 
+                                        <div className={`pl-4 ${ password === confirmPassword ? "hidden" : "animate__animated animate__fadeIn"}`}>
+                                            <ul className="text-xs">
+                                                <li className="flex items-center">
+                                                    <span className="mr-1">
+                                                        <CheckIcon isChecked={false} />
+                                                    </span>Las contraseñas no coinciden
+                                                </li>
+                                            </ul>
+                                        </div>
+
                                         {/* Message error */}
                                         {error && <ErrorAlert error={error} />}
 
                                         <div>
                                             <button
+                                                disabled={!isValidPassword}
                                                 onClick={handlePasswordResetSubmit}
-                                                className='bg-blue-500 w-full hover:bg-blue-700 text-white font-bold py-3 rounded'>
+                                                className='bg-blue-500 w-full enabled:hover:bg-blue-700 text-white font-bold py-3 rounded disabled:opacity-50 disabled:hover:none'>
                                                 Restablecer contraseña
                                             </button>
                                         </div>
