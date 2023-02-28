@@ -29,30 +29,55 @@ const PasswordRecovery = () => {
     const [hasNumbers, setHasNumbers] = useState(false);
     const [hasCapitalLetters, setHasCapitalLetters] = useState(false);
     const [hasLowercaseLetters, setHasLowercaseLetters] = useState(false);
-    const [hasSpecialCharacters, setHasSpecialCharacters] = useState(false)
+    const [hasSpecialCharacters, setHasSpecialCharacters] = useState(false);
     const [hasEightChars, setHasEightChars] = useState(false);
     const [isValidPassword, setIsValidPassword] = useState(false);
 
-    useEffect(() => {
-        const hasNumbersValidation = containsNumbers(password);
-        const hasCapitalLettersValidation = containsCapitalLetters(password);
-        const hasLowercaseLetterValidation = containsLowercaseLetters(password);
-        const hasEightharsValidation = password.length >= 8 ? true : false;
-        const hasSpecialCharactersValidation = containsSpecialChars(password)
-
-        setHasNumbers(hasNumbersValidation);
-        setHasCapitalLetters(hasCapitalLettersValidation);
-        setHasLowercaseLetters(hasLowercaseLetterValidation);
-        setHasSpecialCharacters(hasSpecialCharactersValidation);
-        setHasEightChars(hasEightharsValidation);
-
-        setIsValidPassword(false)
-
-        if (hasNumbersValidation && hasCapitalLettersValidation && hasLowercaseLetterValidation && hasEightharsValidation && hasSpecialCharactersValidation && password === confirmPassword && code.length > 2) {
-            setIsValidPassword(true)
+    // Function to check password validations
+    const validatePassword = (password, confirmPassword, code) => {
+        const validation = {
+            hasNumbers: containsNumbers(password),
+            hasCapitalLetters: containsCapitalLetters(password),
+            hasLowercaseLetters: containsLowercaseLetters(password),
+            hasSpecialCharacters: containsSpecialChars(password),
+            hasEightCharacters: password.length >= 8,
         }
 
-    }, [password, code, confirmPassword]);
+        const isValid = 
+            validation.hasNumbers &&
+            validation.hasCapitalLetters &&
+            validation.hasLowercaseLetters &&
+            validation.hasSpecialCharacters &&
+            validation.hasEightCharacters &&
+            password === confirmPassword &&
+            code.length > 2
+
+        return {validation, isValid}
+    }
+
+    // Function to hide or animate "password not match" icon
+    const getConfirmPasswordClass = (password, confirmPassword) => {
+        if(confirmPassword.length < 7){
+            return 'hidden'
+        }
+        if(password === confirmPassword){
+            return 'hidden'
+        }
+        return 'animate__animated animate__fadeIn'
+    }
+
+    useEffect(() => {
+        const {validation, isValid} = validatePassword(password, confirmPassword, code)
+
+        setHasNumbers(validation.hasNumbers)
+        setHasCapitalLetters(validation.hasCapitalLetters)
+        setHasLowercaseLetters(validation.hasLowercaseLetters)
+        setHasSpecialCharacters(validation.hasSpecialCharacters)
+        setHasEightChars(validation.hasEightCharacters)
+
+        setIsValidPassword(isValid)
+
+    }, [password, confirmPassword, code])
 
     // Step 1
     // Function to send code to users email
@@ -234,7 +259,7 @@ const PasswordRecovery = () => {
                                             setValue={setConfirmPassword}
                                         />
 
-                                        <div className={`pl-4 ${ password === confirmPassword ? "hidden" : "animate__animated animate__fadeIn"}`}>
+                                        <div className={`pl-4 ${getConfirmPasswordClass(password, confirmPassword)}`}>
                                             <ul className="text-xs">
                                                 <li className="flex items-center">
                                                     <span className="mr-1">
