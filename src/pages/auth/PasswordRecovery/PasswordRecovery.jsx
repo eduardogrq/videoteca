@@ -43,7 +43,7 @@ const PasswordRecovery = () => {
             hasEightCharacters: password.length >= 8,
         }
 
-        const isValid = 
+        const isValid =
             validation.hasNumbers &&
             validation.hasCapitalLetters &&
             validation.hasLowercaseLetters &&
@@ -52,22 +52,22 @@ const PasswordRecovery = () => {
             password === confirmPassword &&
             code.length > 2
 
-        return {validation, isValid}
+        return { validation, isValid }
     }
 
     // Function to hide or animate "password not match" icon
     const getConfirmPasswordClass = (password, confirmPassword) => {
-        if(confirmPassword.length < 7){
+        if (confirmPassword.length < 7) {
             return 'hidden'
         }
-        if(password === confirmPassword){
+        if (password === confirmPassword) {
             return 'hidden'
         }
         return 'animate__animated animate__fadeIn'
     }
 
     useEffect(() => {
-        const {validation, isValid} = validatePassword(password, confirmPassword, code)
+        const { validation, isValid } = validatePassword(password, confirmPassword, code)
 
         setHasNumbers(validation.hasNumbers)
         setHasCapitalLetters(validation.hasCapitalLetters)
@@ -128,7 +128,6 @@ const PasswordRecovery = () => {
             <section className="lg:w-1/2 h-full mx-auto">
                 <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
 
-
                     <div className="w-full bg-white rounded-lg shadow-lg md:mt-0 sm:max-w-md xl:p-0">
                         <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
 
@@ -142,7 +141,7 @@ const PasswordRecovery = () => {
                                             </svg>
                                         </Link>
                                         <div className="w-full flex justify-center text-center">
-                                            <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">¿Has olvidado tu contraseña?</h1>
+                                            <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">¿Olvidaste tu contraseña?</h1>
                                         </div>
 
                                     </div>
@@ -199,7 +198,7 @@ const PasswordRecovery = () => {
                                         />
 
                                         <InputForm
-                                            name="newPassword"
+                                            name="password"
                                             placeholder="••••••••"
                                             type="password"
                                             title="Ingresa tu nueva contraseña"
@@ -295,17 +294,13 @@ const PasswordRecovery = () => {
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-28 h-28 fill-green-500 animate__animated animate__flip">
                                             <path fillRule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clipRule="evenodd" />
                                         </svg>
-
                                     </div>
                                     <h2 className="text-sm mb-7 text-gray-900">tu contraseña se actualizó éxitosamente</h2>
                                     <Link to="/login" className='bg-blue-500 w-full hover:bg-blue-700 text-white font-bold py-3 px-5 rounded'>Iniciar sesión</Link>
-
                                 </div>
                             }
-
                         </div>
                     </div>
-
                 </div>
             </section>
             <section className="bg-cover bg-no-repeat w-1/2 h-full hidden lg:block" style={{ backgroundImage: `url(${bgImage})` }}>

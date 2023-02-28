@@ -13,7 +13,7 @@ const InputForm = ({ id, name, type, title, placeholder, required, setValue, val
         <div className="block">
             <label
                 htmlFor="email"
-                className="block mb-2 text-sm font-medium text-gray-900">
+                className="block mb-2 text-sm text-gray-900">
                 {title} {required && <span className="text-red-500">*</span>}
             </label>
 
