@@ -4,6 +4,7 @@ import './index.css';
 import 'animate.css';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
+import 'react-tooltip/dist/react-tooltip.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

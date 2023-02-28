@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import ErrorAlert from '../../../components/common/alerts/ErrorAlert';
 import Loader from "../../../components/common/Loader";
 import { CheckIcon } from '../../../assets/icons';
+import { Tooltip } from 'react-tooltip'
 import {
     containsNumbers,
     containsCapitalLetters,
@@ -16,20 +17,14 @@ import {
 
 const PasswordRecovery = () => {
 
-    const [error, setError] = useState('')
-    const [loading, setLoading] = useState('')
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [confirmPassword, setConfirmPassword] = useState('')
-    const [code, setCode] = useState('')
-    const [step, setStep] = useState(2)
-    const [isActive, setIsActive] = useState(false)
-
-    // Contiene al menos 1 número // listo
-    // Contiene al menos 1 carácter especial
-    // Contiene al menos una letra mayúscula // listo
-    // Contiene al menos una letra minúscula // listo
-    // Contiene signos especiales: ^ $ * . [ ] { } ( ) ? - " ! @ # % & / \ , > < ' : ; | _ ~ ` + =
+    const [error, setError] = useState('');
+    const [loading, setLoading] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [code, setCode] = useState('');
+    const [step, setStep] = useState(2);
+    const [isActive, setIsActive] = useState(false);
 
     // password validations
     const [hasNumbers, setHasNumbers] = useState(false);
@@ -55,6 +50,8 @@ const PasswordRecovery = () => {
         console.log(hasSpecialCharacters, password);
     }, [password]);
 
+    // Step 1
+    // Function to send code to users email
     const handleForgotPassword = async () => {
         setLoading(true);
         try {
@@ -70,6 +67,8 @@ const PasswordRecovery = () => {
         }
     }
 
+    // Step 2
+    // Function to restablish password sending email, code and new password
     const handlePasswordResetSubmit = async () => {
 
         // Conditional to check if password and confirm password are equal, otherwise send error that passwords do not match
@@ -95,6 +94,7 @@ const PasswordRecovery = () => {
         setIsActive(true)
     }
 
+    // Conditional to show loading spinner if promises are not solved yet
     if (loading) {
         return <Loader />
     }
@@ -160,7 +160,6 @@ const PasswordRecovery = () => {
                                         Restablecer contraseña
                                     </h1>
 
-
                                     <div className="space-y-4">
 
                                         <p className="text-sm text-gray-900 font-medium text-center">Te enviamos un código para restablecer tu contraseña. Por favor, ingrésalo en el siguiente campo.</p>
@@ -215,9 +214,15 @@ const PasswordRecovery = () => {
                                                     <span className="mr-1">
                                                         <CheckIcon isChecked={hasSpecialCharacters} />
                                                     </span>
-                                                    <span className="underline cursor-pointer">
-                                                        Al menos un caracter especial (^$*.[]{}()?-"!@#%&amp;/\,&gt;&lt;':;|_~`+=)
+                                                    <span
+                                                        className="underline cursor-pointer"
+                                                        data-tooltip-id="my-tooltip"
+                                                        data-tooltip-place="top"
+                                                        data-tooltip-content=" ^ $ * . [ ] { } ( ) ? &quot; - ! @ # % &amp; / \ , &gt; &lt; ' : ; | _ ~ ` + = "
+                                                    >
+                                                        Al menos un caracter especial
                                                     </span>
+                                                    <Tooltip id="my-tooltip" />
                                                 </li>
                                             </ul>
                                         </div>
