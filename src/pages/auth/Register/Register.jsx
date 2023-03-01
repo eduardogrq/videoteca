@@ -16,7 +16,8 @@ const Register = () => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [code, setCode] = useState('');
-    const [step, setStep] = useState(3);
+    const [step, setStep] = useState(1);
+    const [progress, setProgress] = useState(0);
 
     const registerUser = async () => {
         try {
@@ -37,8 +38,8 @@ const Register = () => {
         }
     }
 
-    const verifyUserAccount = async() => {
-        try{
+    const verifyUserAccount = async () => {
+        try {
             await Auth.confirmSignUp(email, code)
             setStep(3)
         } catch (err) {
@@ -48,12 +49,23 @@ const Register = () => {
     }
 
     useEffect(() => {
-        if(step === 3){
-            setTimeout(() => {
-                navigate('/dashboard')
-            }, 4000)
+        if (step === 3) {
+            const intervalId = setInterval(() => {
+                setProgress(prevProgress => prevProgress + 1);
+              }, 30);
+              if (progress === 100) {
+                  navigate('/dashboard');
+              }
+              return () => clearInterval(intervalId);
         }
-    }, [step]);
+    }, [step, progress, navigate]);
+
+    // useEffect(() => {
+    //     const intervalId = setInterval(() => {
+    //       setProgress(prevProgress => prevProgress + 1);
+    //     }, 30);
+    //     return () => clearInterval(intervalId);
+    //   }, []);
 
     return (
         <div className="flex h-screen">
@@ -172,16 +184,23 @@ const Register = () => {
                             }
                             {step === 3 &&
                                 <div className="text-center py-5 animate__animated animate__fadeIn">
-                                <span className="text-2xl font-extrabold text-gray-900">¡Cuenta creada!</span>
-                                <div className="flex justify-center my-5">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-28 h-28 fill-green-500 animate__animated animate__flip">
-                                        <path fillRule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clipRule="evenodd" />
-                                    </svg>
+                                    <span className="text-2xl font-extrabold text-gray-900">¡Cuenta creada!</span>
+                                    <div className="flex justify-center my-5">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-28 h-28 fill-green-500 animate__animated animate__flip">
+                                            <path fillRule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clipRule="evenodd" />
+                                        </svg>
+                                    </div>
+                                    <p className="text-sm mb-7 text-gray-900">Tu cuenta se creo exitósamente</p>
+
+
+                                    <div className="h-3 w-full bg-gray-300 rounded-md overflow-hidden">
+                                        <div
+                                            className="h-full bg-green-500"
+                                            style={{ width: `${progress}%` }}
+                                        ></div>
+                                    </div>
+                                    <p className="text-xs text-gray-900">En breve serás redirigido al panel de administrador</p>
                                 </div>
-                                <p className="text-sm text-gray-900">Tu cuenta se creo exitósamente</p>
-                                <p className="text-xs text-gray-900">Serás redirigido al panel de administrador enseguida</p>
-                                {/* <Link to="/login" className='bg-blue-500 w-full hover:bg-blue-700 text-white font-bold py-3 px-5 rounded'>Iniciar sesión</Link> */}
-                            </div>
                             }
                             {/* <RegisterForm /> */}
 
