@@ -26,7 +26,7 @@ const Register = () => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [code, setCode] = useState('');
-    const [step, setStep] = useState(1);
+    const [step, setStep] = useState(3);
     const [progress, setProgress] = useState(0);
 
     // password validations
@@ -152,7 +152,7 @@ const Register = () => {
 
     return (
         <div className="flex h-screen">
-            <section className="lg:w-1/2 h-full mx-auto">
+            <section className="w-full lg:w-1/2 h-full mx-auto">
                 <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
 
                     <div className="w-full bg-white rounded-lg shadow-lg md:mt-0 sm:max-w-md xl:p-0">
@@ -326,7 +326,7 @@ const Register = () => {
                                     <p className="text-sm mb-7 text-gray-900">Tu cuenta se ha creado exitósamente</p>
 
                                     {/* Progress bar */}
-                                    <div className="h-3 w-full bg-gray-300 rounded-md overflow-hidden">
+                                    <div className="h-3 w-full mb-2 bg-gray-300 rounded-md overflow-hidden">
                                         <div
                                             className="h-full bg-blue-500"
                                             style={{ width: `${progress}%` }}
