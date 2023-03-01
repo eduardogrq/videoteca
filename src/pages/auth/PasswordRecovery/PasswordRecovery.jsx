@@ -87,11 +87,11 @@ const PasswordRecovery = () => {
         if (step === 3) {
             const intervalId = setInterval(() => {
                 setProgress(prevProgress => prevProgress + 1);
-              }, 40);
-              if (progress === 100) {
-                  navigate('/login');
-              }
-              return () => clearInterval(intervalId);
+            }, 40);
+            if (progress === 100) {
+                navigate('/login');
+            }
+            return () => clearInterval(intervalId);
         }
     }, [step, progress, navigate]);
 
@@ -181,7 +181,8 @@ const PasswordRecovery = () => {
                                         <div>
                                             <button
                                                 onClick={handleForgotPassword}
-                                                className='bg-blue-500 w-full hover:bg-blue-700 text-white font-bold py-3 rounded'>
+                                                disabled={email.length <= 3}
+                                                className='bg-blue-500 w-full enable:hover:bg-blue-700 disabled:opacity-50 text-white font-bold py-3 rounded'>
                                                 Enviar código
                                             </button>
                                         </div>
@@ -222,6 +223,7 @@ const PasswordRecovery = () => {
                                             setValue={setPassword}
                                         />
 
+                                        {/* check icons section */}
                                         <div className={`pl-4 ${!password ? "hidden" : "animate__animated animate__fadeIn"}`}>
                                             <ul className="text-xs">
                                                 <li className="flex items-center">
@@ -315,13 +317,13 @@ const PasswordRecovery = () => {
                                     <div>
                                         <h2 className="text-sm mb-7 text-gray-900">tu contraseña ha sido actualizada exitósamente</h2>
 
-                                    <div className="h-2 w-full bg-gray-300 rounded-md overflow-hidden">
-                                        <div
-                                            className="h-full bg-blue-500"
-                                            style={{ width: `${progress}%` }}
-                                        ></div>
-                                    </div>
-                                    <p className="text-xs text-gray-900">En breve serás redirigido a la página de inicio de sesión</p>
+                                        <div className="h-2 w-full bg-gray-300 rounded-md overflow-hidden">
+                                            <div
+                                                className="h-full bg-blue-500"
+                                                style={{ width: `${progress}%` }}
+                                            ></div>
+                                        </div>
+                                        <p className="text-xs text-gray-900">En breve serás redirigido a la página de inicio de sesión</p>
                                     </div>
                                 </div>
                             }

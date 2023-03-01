@@ -6,6 +6,14 @@ import { useEffect, useState } from 'react';
 import { Auth } from 'aws-amplify';
 import ErrorAlert from '../../../components/common/alerts/ErrorAlert';
 import Loader from '../../../components/common/Loader';
+import { CheckIcon } from '../../../assets/icons';
+import { Tooltip } from 'react-tooltip';
+import {
+    containsNumbers,
+    containsCapitalLetters,
+    containsLowercaseLetters,
+    containsSpecialChars
+} from '../../../utils';
 
 const Register = () => {
 
@@ -20,6 +28,17 @@ const Register = () => {
     const [code, setCode] = useState('');
     const [step, setStep] = useState(1);
     const [progress, setProgress] = useState(0);
+
+    // password validations
+    const [hasNumbers, setHasNumbers] = useState(false);
+    const [hasCapitalLetters, setHasCapitalLetters] = useState(false);
+    const [hasLowercaseLetters, setHasLowercaseLetters] = useState(false);
+    const [hasSpecialCharacters, setHasSpecialCharacters] = useState(false);
+    const [hasEightChars, setHasEightChars] = useState(false);
+
+    // step validations
+    const [stepOneValidation, setStepOneValidation] = useState(false);
+    const [stepTwoValidation, setStepTwoValidation] = useState(false);
 
     // Function to register user account adding autoSignIn method to login after register and verify account
     const registerUser = async () => {
@@ -58,16 +77,71 @@ const Register = () => {
         }
     }
 
+    // Function to hide or animate "password not match" icon
+    const getConfirmPasswordClass = (password, confirmPassword) => {
+        if (confirmPassword.length < 7) {
+            return 'hidden'
+        }
+        if (password === confirmPassword) {
+            return 'hidden'
+        }
+        return 'animate__animated animate__fadeIn'
+    }
+
+    // Function to check password validations
+    const validatePassword = (password, confirmPassword, code) => {
+        const validation = {
+            hasNumbers: containsNumbers(password),
+            hasCapitalLetters: containsCapitalLetters(password),
+            hasLowercaseLetters: containsLowercaseLetters(password),
+            hasSpecialCharacters: containsSpecialChars(password),
+            hasEightCharacters: password.length >= 8,
+        }
+
+        const isValid =
+            validation.hasNumbers &&
+            validation.hasCapitalLetters &&
+            validation.hasLowercaseLetters &&
+            validation.hasSpecialCharacters &&
+            validation.hasEightCharacters &&
+            password === confirmPassword
+
+        return { validation, isValid }
+    }
+
+    useEffect(() => {
+        const { validation, isValid } = validatePassword(password, confirmPassword, code)
+
+        setHasNumbers(validation.hasNumbers)
+        setHasCapitalLetters(validation.hasCapitalLetters)
+        setHasLowercaseLetters(validation.hasLowercaseLetters)
+        setHasSpecialCharacters(validation.hasSpecialCharacters)
+        setHasEightChars(validation.hasEightCharacters)
+
+        if (isValid && email.length >= 3 && name.length >= 3) {
+            setStepOneValidation(true)
+        } else {
+            setStepOneValidation(false)
+        }
+
+        if (code.length >= 3) {
+            setStepTwoValidation(true)
+        } else {
+            setStepTwoValidation(false)
+        }
+
+    }, [password, confirmPassword, code, name, email])
+
     // Function to fill progress bar and navigate to login route
     useEffect(() => {
         if (step === 3) {
             const intervalId = setInterval(() => {
                 setProgress(prevProgress => prevProgress + 1);
-              }, 40);
-              if (progress === 100) {
-                  navigate('/dashboard');
-              }
-              return () => clearInterval(intervalId);
+            }, 40);
+            if (progress === 100) {
+                navigate('/dashboard');
+            }
+            return () => clearInterval(intervalId);
         }
     }, [step, progress, navigate]);
 
@@ -123,6 +197,51 @@ const Register = () => {
                                             value={password}
                                             setValue={setPassword}
                                         />
+
+                                        {/* check icons section */}
+                                        <div className={`pl-4 ${!password ? "hidden" : "animate__animated animate__fadeIn"}`}>
+                                            <ul className="text-xs">
+                                                <li className="flex items-center">
+                                                    <span className="mr-1">
+                                                        <CheckIcon isChecked={hasEightChars} />
+                                                    </span>Longitud mínima de 8 caracteres
+                                                </li>
+
+                                                <li className="flex items-center">
+                                                    <span className="mr-1">
+                                                        <CheckIcon isChecked={hasLowercaseLetters} />
+                                                    </span>Al menos una minúscula (a-z)
+                                                </li>
+
+                                                <li className="flex items-center">
+                                                    <span className="mr-1">
+                                                        <CheckIcon isChecked={hasCapitalLetters} />
+                                                    </span>Al menos una mayúscula (A-Z)
+                                                </li>
+
+                                                <li className="flex items-center">
+                                                    <span className="mr-1">
+                                                        <CheckIcon isChecked={hasNumbers} />
+                                                    </span>Al menos un número (0-9)
+                                                </li>
+
+                                                <li className="flex items-center">
+                                                    <span className="mr-1">
+                                                        <CheckIcon isChecked={hasSpecialCharacters} />
+                                                    </span>
+                                                    <span
+                                                        className="underline cursor-pointer"
+                                                        data-tooltip-id="my-tooltip"
+                                                        data-tooltip-place="top"
+                                                        data-tooltip-content=" ^ $ * . [ ] { } ( ) ? &quot; - ! @ # % &amp; / \ , &gt; &lt; ' : ; | _ ~ ` + = "
+                                                    >
+                                                        Al menos un caracter especial
+                                                    </span>
+                                                    <Tooltip id="my-tooltip" />
+                                                </li>
+                                            </ul>
+                                        </div>
+
                                         <InputForm
                                             name="confirmPassword"
                                             placeholder="••••••••"
@@ -132,12 +251,22 @@ const Register = () => {
                                             setValue={setConfirmPassword}
                                         />
 
+                                        <div className={`pl-4 ${getConfirmPasswordClass(password, confirmPassword)}`}>
+                                            <ul className="text-xs">
+                                                <li className="flex items-center">
+                                                    <span className="mr-1">
+                                                        <CheckIcon isChecked={false} />
+                                                    </span>Las contraseñas no coinciden
+                                                </li>
+                                            </ul>
+                                        </div>
+
                                         {/* Message error */}
                                         {error && <ErrorAlert error={error} />}
 
                                         <div>
                                             <button
-                                                // disabled={!isValidPassword}
+                                                disabled={!stepOneValidation}
                                                 onClick={registerUser}
                                                 className='bg-blue-500 w-full enabled:hover:bg-blue-700 text-white font-bold py-3 rounded disabled:opacity-50 disabled:hover:none'>
                                                 Crear cuenta
@@ -174,9 +303,9 @@ const Register = () => {
 
                                         <div>
                                             <button
-                                                // disabled={!isValidPassword}
+                                                disabled={!stepTwoValidation}
                                                 onClick={verifyUserAccount}
-                                                className='bg-blue-500 w-full enabled:hover:bg-blue-700 text-white font-bold py-3 rounded disabled:opacity-50 disabled:hover:none'>
+                                                className='bg-blue-500 w-full enabled:hover:bg-blue-700 disabled:opacity-50 text-white font-bold py-3 rounded '>
                                                 Enviar
                                             </button>
                                         </div>
