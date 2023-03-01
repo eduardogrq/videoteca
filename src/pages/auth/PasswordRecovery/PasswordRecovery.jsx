@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { Auth } from 'aws-amplify';
 import InputForm from '../../../components/form/InputForm';
 import bgImage from './../../../assets/images/bg-login.png';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import ErrorAlert from '../../../components/common/alerts/ErrorAlert';
 import Loader from "../../../components/common/Loader";
 import { CheckIcon } from '../../../assets/icons';
@@ -17,6 +17,8 @@ import {
 
 const PasswordRecovery = () => {
 
+    const navigate = useNavigate();
+
     const [error, setError] = useState('');
     const [loading, setLoading] = useState('');
     const [email, setEmail] = useState('');
@@ -24,6 +26,7 @@ const PasswordRecovery = () => {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [code, setCode] = useState('');
     const [step, setStep] = useState(1);
+    const [progress, setProgress] = useState(0);
 
     // password validations
     const [hasNumbers, setHasNumbers] = useState(false);
@@ -78,6 +81,19 @@ const PasswordRecovery = () => {
         setIsValidPassword(isValid)
 
     }, [password, confirmPassword, code])
+
+    // Function to fill progress bar and navigate to login route
+    useEffect(() => {
+        if (step === 3) {
+            const intervalId = setInterval(() => {
+                setProgress(prevProgress => prevProgress + 1);
+              }, 40);
+              if (progress === 100) {
+                  navigate('/login');
+              }
+              return () => clearInterval(intervalId);
+        }
+    }, [step, progress, navigate]);
 
     // Step 1
     // Function to send code to users email
@@ -289,14 +305,24 @@ const PasswordRecovery = () => {
                             }
                             {step === 3 &&
                                 <div className="text-center py-5 animate__animated animate__fadeIn">
-                                    <span className="text-2xl font-extrabold text-gray-900">Contraseña Actualizada</span>
+                                    <span className="text-2xl font-extrabold text-gray-900">¡Contraseña Actualizada!</span>
                                     <div className="flex justify-center my-5">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-28 h-28 fill-green-500 animate__animated animate__flip">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-28 h-28 fill-blue-500 animate__animated animate__flip">
                                             <path fillRule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clipRule="evenodd" />
                                         </svg>
                                     </div>
-                                    <h2 className="text-sm mb-7 text-gray-900">tu contraseña se actualizó éxitosamente</h2>
-                                    <Link to="/login" className='bg-blue-500 w-full hover:bg-blue-700 text-white font-bold py-3 px-5 rounded'>Iniciar sesión</Link>
+
+                                    <div>
+                                        <h2 className="text-sm mb-7 text-gray-900">tu contraseña ha sido actualizada exitósamente</h2>
+
+                                    <div className="h-2 w-full bg-gray-300 rounded-md overflow-hidden">
+                                        <div
+                                            className="h-full bg-blue-500"
+                                            style={{ width: `${progress}%` }}
+                                        ></div>
+                                    </div>
+                                    <p className="text-xs text-gray-900">En breve serás redirigido a la página de inicio de sesión</p>
+                                    </div>
                                 </div>
                             }
                         </div>

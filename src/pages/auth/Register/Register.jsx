@@ -5,11 +5,13 @@ import InputForm from '../../../components/form/InputForm';
 import { useEffect, useState } from 'react';
 import { Auth } from 'aws-amplify';
 import ErrorAlert from '../../../components/common/alerts/ErrorAlert';
+import Loader from '../../../components/common/Loader';
 
 const Register = () => {
 
     let navigate = useNavigate()
 
+    const [loading, setLoading] = useState(false)
     const [error, setError] = useState('')
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
@@ -19,7 +21,9 @@ const Register = () => {
     const [step, setStep] = useState(1);
     const [progress, setProgress] = useState(0);
 
+    // Function to register user account adding autoSignIn method to login after register and verify account
     const registerUser = async () => {
+        setLoading(true);
         try {
             await Auth.signUp({
                 username: email,
@@ -35,24 +39,31 @@ const Register = () => {
         } catch (err) {
             console.log("🚀 ~ file: Register.jsx:28 ~ registerUser ~ err:", err)
             setError(err.message)
+        } finally {
+            setLoading(false)
         }
     }
 
+
     const verifyUserAccount = async () => {
+        setLoading(true)
         try {
             await Auth.confirmSignUp(email, code)
             setStep(3)
         } catch (err) {
             console.log("🚀 ~ file: Register.jsx:43 ~ verifyUserAccount ~ err:", err)
             setError(err.message)
+        } finally {
+            setLoading(false)
         }
     }
 
+    // Function to fill progress bar and navigate to login route
     useEffect(() => {
         if (step === 3) {
             const intervalId = setInterval(() => {
                 setProgress(prevProgress => prevProgress + 1);
-              }, 30);
+              }, 40);
               if (progress === 100) {
                   navigate('/dashboard');
               }
@@ -60,12 +71,10 @@ const Register = () => {
         }
     }, [step, progress, navigate]);
 
-    // useEffect(() => {
-    //     const intervalId = setInterval(() => {
-    //       setProgress(prevProgress => prevProgress + 1);
-    //     }, 30);
-    //     return () => clearInterval(intervalId);
-    //   }, []);
+    // Conditional to show loading spinner if promises are not solved yet
+    if (loading) {
+        return <Loader />
+    }
 
     return (
         <div className="flex h-screen">
@@ -135,11 +144,6 @@ const Register = () => {
                                             </button>
                                         </div>
 
-                                        <hr />
-                                        <p className="text-sm text-center font-light text-gray-500">
-                                            ¿Aún no tienes cuenta? <Link to="/register" className="font-medium text-blue-500 hover:underline">Regístrate aquí</Link>
-                                        </p>
-
                                     </div>
                                 </div>
                             }
@@ -184,18 +188,18 @@ const Register = () => {
                             }
                             {step === 3 &&
                                 <div className="text-center py-5 animate__animated animate__fadeIn">
-                                    <span className="text-2xl font-extrabold text-gray-900">¡Cuenta creada!</span>
+                                    <span className="text-2xl font-extrabold text-gray-900">¡Registro Exitoso!</span>
                                     <div className="flex justify-center my-5">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-28 h-28 fill-green-500 animate__animated animate__flip">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-28 h-28 fill-blue-500 animate__animated animate__flip">
                                             <path fillRule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clipRule="evenodd" />
                                         </svg>
                                     </div>
-                                    <p className="text-sm mb-7 text-gray-900">Tu cuenta se creo exitósamente</p>
+                                    <p className="text-sm mb-7 text-gray-900">Tu cuenta se ha creado exitósamente</p>
 
-
+                                    {/* Progress bar */}
                                     <div className="h-3 w-full bg-gray-300 rounded-md overflow-hidden">
                                         <div
-                                            className="h-full bg-green-500"
+                                            className="h-full bg-blue-500"
                                             style={{ width: `${progress}%` }}
                                         ></div>
                                     </div>
