@@ -3,13 +3,9 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
     return (
-        <header className="bg-slate-200">
-            <nav className="container mx-auto py-4 flex justify-between items-center">
-                <h2 className="text-2xl font-bold">Mi logo</h2>
-                <ul className="flex gap-3">
-                    <li><Link to="/dashboard">Dashboard</Link></li>
-                </ul>
-            </nav>
+        <header class="bg-blue-500 text-white py-4 px-8">
+            <h1 class="text-4xl font-bold">Videoteka</h1>
+            <p class="text-xl mt-4">¡Bienvenido a nuestra página!</p>
         </header>
     )
 }
