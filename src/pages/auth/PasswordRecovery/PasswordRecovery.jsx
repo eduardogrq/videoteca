@@ -191,6 +191,7 @@ const PasswordRecovery = () => {
                                         <p className="text-sm text-center font-light text-gray-500">
                                             ¿Aún no tienes cuenta? <Link to="/register" className="font-medium text-blue-500 hover:underline">Regístrate aquí</Link>
                                         </p>
+                                        <hr />
                                     </div>
                                 </div>
                             }
@@ -298,9 +299,15 @@ const PasswordRecovery = () => {
                                             </button>
                                         </div>
 
-                                        <hr />
+                                        {/* <hr /> */}
                                         <p className="text-sm text-center font-light text-gray-500">
                                             ¿Aún no tienes cuenta? <Link to="/register" className="font-medium text-blue-500 hover:underline">Regístrate aquí</Link>
+                                        </p>
+                                        <hr />
+                                        <p className="text-sm flex justify-center font-light text-gray-500">
+                                            <Link to="/login" className="font-medium text-xs text-gray-600 hover:underline hover:text-gray-900">
+                                                Regresar a inicio de sesión
+                                            </Link>
                                         </p>
                                     </div>
                                 </div>

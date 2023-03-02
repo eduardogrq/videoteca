@@ -26,7 +26,7 @@ const Register = () => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [code, setCode] = useState('');
-    const [step, setStep] = useState(3);
+    const [step, setStep] = useState(1);
     const [progress, setProgress] = useState(0);
 
     // password validations

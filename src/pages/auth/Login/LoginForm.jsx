@@ -8,6 +8,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import ErrorAlert from '../../../components/common/alerts/ErrorAlert';
 import logo from './../../../assets/images/logo-siayec.png';
 import InputForm from '../../../components/form/InputForm';
+import Loader from '../../../components/common/Loader';
 
 Amplify.configure(awsconfig);
 
@@ -16,6 +17,7 @@ const LoginForm = () => {
     const [error, setError] = useState('')
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [loading, setLoading] = useState(false);
 
     //Using context to get and set UserData
     const { userData, setUserData } = useContext(DataContext)
@@ -24,14 +26,22 @@ const LoginForm = () => {
     // Submit function that use Auth from amplify and set userData in userData Context
     const handleSubmit = async (event) => {
         event.preventDefault();
-
+        setLoading(true)
         try {
             let response = await Auth.signIn(email, password);
             setUserData(response);
             navigate('/dashboard');
         } catch (err) {
             setError(err.message)
+        } finally {
+            setLoading(false)
         }
+    }
+
+    if(loading) {
+        return (
+            <Loader />
+        )
     }
 
     return (
