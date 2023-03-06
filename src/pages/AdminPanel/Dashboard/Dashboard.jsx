@@ -1,7 +1,7 @@
 
 import React, { useState, useContext } from "react"
 import { Auth } from "aws-amplify"
-import { DataContext } from "../../context/DataContext.js"
+import { DataContext } from "../../../context/DataContext.js"
 
 const Dashboard = () => {
 

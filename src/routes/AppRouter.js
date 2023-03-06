@@ -5,7 +5,7 @@ import { DataProvider } from './../context/DataContext.js'
 import PrivateRoute from "./PrivateRoute";
 // Pages routes
 import Home from "../pages/Home/Home";
-import Dashboard from "../pages/Dashboard/Dashboard";
+import Dashboard from "../pages/AdminPanel/Dashboard/Dashboard";
 
 import {Login, Register, PasswordRecovery} from "../pages/auth/index.js"
 import Loader from '../components/common/Loader.jsx';
