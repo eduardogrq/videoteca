@@ -1,5 +1,6 @@
 
 import Sidebar from './../Sidebar/Sidebar'
+import Navbar from './../Navbar/Navbar'
 
 const Dashboard = () => {
   return (
@@ -12,7 +13,9 @@ const Dashboard = () => {
           {/* <!-- icono para abrir el sidebar --> */}
           {/* X */}
         {/* </button> */}
-        Aqui va el contenido del contenedor principal
+        {/* Aqui va el contenido del contenedor principal */}
+
+        <Navbar />
       </div>
     </div>
   )
