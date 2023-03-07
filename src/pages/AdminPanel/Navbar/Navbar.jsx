@@ -3,9 +3,9 @@ import React from 'react';
 
 const Navbar = () => {
     return (
-        <div>
+        <nav className="w-full bg-gray-100 h-20">
             Here is the navbar
-        </div>
+        </nav>
     );
 }
 
