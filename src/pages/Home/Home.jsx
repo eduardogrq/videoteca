@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react"
+import React, { useContext } from "react"
 import { useNavigate } from "react-router-dom";
 import Footer from "./Footer/Footer";
 import Header from "./Header/Header";
@@ -9,7 +9,7 @@ const Home = () => {
 
     const navigate = useNavigate();
 
-    const {userData, setUserData} = useContext(DataContext)
+    const {setUserData} = useContext(DataContext)
 
     // Provitional function to singOut, only for proobs
     const signOut = async () => {
