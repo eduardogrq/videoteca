@@ -1,26 +1,36 @@
 
 import Sidebar from './../Sidebar/Sidebar'
 import Navbar from './../Navbar/Navbar'
+import { useState } from 'react'
+import { useEffect } from 'react'
 
 const Dashboard = () => {
+
+  const [hidden, setHidden] = useState(false)
+
+  const turnHidden = () => {
+    setHidden(!hidden)
+  }
+
+  useEffect(() => {
+    if (hidden) {
+      document.body.classList.add('overflow-hidden');
+    } else {
+      document.body.classList.remove('overflow-hidden');
+    }
+  }, [hidden]);
+
   return (
     <div className="lg:flex">
-
-      <Sidebar/>
-
+      {/* Sidebar component */}
+      <Sidebar hidden={hidden} />
+      {/* Main container */}
       <div className="h-screen w-screen lg:relative bg-gray-200">
-        {/* <button className="fixed top-0 left-0 h-10 w-10 z-50"> */}
-        {/* <!-- icono para abrir el sidebar --> */}
-        {/* X */}
-        {/* </button> */}
-        {/* Aqui va el contenido del contenedor principal */}
-
-        <Navbar />
-        {/* <main className='container mx-auto h-full w-full bg-gray-500'>
-          <div>
-            Hello peggos
-          </div>
-        </main> */}
+        {/* Navbar component */}
+        <Navbar turnHidden={turnHidden} />
+        <main>
+          
+        </main>
       </div>
     </div>
   )

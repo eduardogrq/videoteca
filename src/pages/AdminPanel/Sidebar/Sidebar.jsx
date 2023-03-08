@@ -4,7 +4,7 @@ import React from 'react';
 const Sidebar = ({hidden}) => {
     return (
         <div className={`flex text-sm ${!hidden || 'hidden'}`}>
-            <div className="animate__animated animate__fadeInLeft fixed top-0 left-0 h-full w-4/5 md:w-2/5 lg:w-64 lg:relative lg:min-h-screen z-50 bg-gray-800 px-5 lg:px-10 pb-10 pt-0">
+            <div className="fixed top-0 left-0 h-full w-4/5 md:w-2/5 lg:w-64 lg:relative lg:min-h-screen z-50 bg-gray-800 px-5 lg:px-10 pb-10 pt-0">
 
                 <div className="flex flex-col justify-between min-h-full text-white">
 
