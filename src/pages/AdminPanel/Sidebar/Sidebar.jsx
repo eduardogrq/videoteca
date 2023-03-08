@@ -1,17 +1,17 @@
 
 import React from 'react';
 
-const Sidebar = () => {
+const Sidebar = ({hidden}) => {
     return (
-        <div className="flex text-sm">
-            <div className="animate__animated animate__fadeInLeft fixed top-0 left-0 h-full w-4/5 md:w-2/5 lg:w-64 lg:relative lg:min-h-screen z-50 bg-gray-800 px-5 lg:px-10 py-10 lg:pt-5">
+        <div className={`flex text-sm ${!hidden || 'hidden'}`}>
+            <div className="animate__animated animate__fadeInLeft fixed top-0 left-0 h-full w-4/5 md:w-2/5 lg:w-64 lg:relative lg:min-h-screen z-50 bg-gray-800 px-5 lg:px-10 pb-10 pt-0">
 
                 <div className="flex flex-col justify-between min-h-full text-white">
 
                     {/* first Block */}
                     <div>
                         {/* profile header */}
-                        <div className="flex justify-between items-center w-full">
+                        <div className="flex justify-between items-center w-full h-20">
                             <div className="flex items-center lg:justify-center lg:text-center lg:w-full gap-3 cursor-pointer">
                                 <img src="https://picsum.photos/seed/picsum/40/40"
                                     className="text-lg rounded-full lg:hidden"
@@ -28,7 +28,7 @@ const Sidebar = () => {
                             </svg>
 
                         </div>
-                        <div className='mt-12 lg:mt-12'>
+                        <div className='mt-8 lg:mt-12'>
                             <ul className='space-y-10 lg:space-y-8'>
                                 <li className='flex items-center'>
                                     <span className='cursor-pointer flex items-center'>
