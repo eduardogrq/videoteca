@@ -5,7 +5,10 @@ const Sidebar = ({ isHidden, turnToHidden }) => {
     return (
         // {/* Sidebar */}
         <div className="flex">
-            <div className={`h-screen w-1/5 md:w-3/5 fixed right-0 bg-black opacity-40 ${!isHidden ? 'block lg:hidden' : 'hidden'}`}>
+            <div 
+                className={`h-screen w-1/5 md:w-3/5 fixed right-0 bg-black opacity-40 ${!isHidden ? 'block lg:hidden' : 'hidden'}`}
+                onClick={turnToHidden}
+            >
             </div>
             <aside className={`w-4/5 md:w-2/5 lg:w-64 text-white fixed inset-y-0 left-0 bg-gray-800 ${!isHidden || 'hidden'}`}>
                 <div className="h-full bg-gray-800 pt-0 px-5">
