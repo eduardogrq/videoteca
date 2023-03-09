@@ -113,7 +113,7 @@ const Sidebar = ({ isHidden, turnToHidden }) => {
         //     <div className="fixed w-full bg-black min-h-screen lg:hidden opacity-50"></div>
         // </div>
         // {/* Barra lateral */}
-        <aside className={`w-4/5 md:w-2/5 lg:w-64 bg-gray-800 text-white fixed inset-y-0 left-0 bg-gray-800 px-5 lg:px-10 pb-10 pt-0 ${!isHidden || 'hidden'}`}>
+        <aside className={`w-4/5 md:w-2/5 lg:w-64 text-white fixed inset-y-0 left-0 bg-gray-800 px-5 lg:px-10 pb-10 pt-0 ${!isHidden || 'hidden'}`}>
 
             <div className="flex justify-between items-center w-full h-20">
                 <div className="flex items-center lg:justify-center lg:text-center lg:w-full gap-5 cursor-pointer">
@@ -135,17 +135,17 @@ const Sidebar = ({ isHidden, turnToHidden }) => {
 
             <ul className="p-4">
                 <li className="my-2">
-                    <a href="#" className="hover:text-gray-400">
+                    <a href="/dashboard" className="hover:text-gray-400">
                         Inicio
                     </a>
                 </li>
                 <li className="my-2">
-                    <a href="#" className="hover:text-gray-400">
+                    <a href="/dashboard" className="hover:text-gray-400">
                         Usuarios
                     </a>
                 </li>
                 <li className="my-2">
-                    <a href="#" className="hover:text-gray-400">
+                    <a href="/dashboard" className="hover:text-gray-400">
                         Configuración
                     </a>
                 </li>
