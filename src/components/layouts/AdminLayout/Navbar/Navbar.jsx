@@ -3,7 +3,7 @@ const Navbar = ({ turnToHidden }) => {
 
     return (
         // {/* Barra de navegación */}
-        <nav className="w-full bg-gray-100 h-20 flex items-center justify-between px-8">
+        <nav className="w-full bg-white h-20 flex items-center justify-between px-8">
             <div>
                 <svg xmlns="http://www.w3.org/2000/svg" onClick={turnToHidden}
                     fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 cursor-pointer">

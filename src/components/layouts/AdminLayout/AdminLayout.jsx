@@ -21,9 +21,9 @@ const AdminPanelLayout = ({ children }) => {
             {/* Contenido principal */}
             <div className={`flex-1  ${isHidden || 'lg:ml-64'} `}>
                 
-                <Navbar turnToHidden={turnToHidden} userAttributes={userData} />
+                <Navbar turnToHidden={turnToHidden} isHidden={isHidden} userAttributes={userData} />
 
-                <div>
+                <div className="bg-red-500">
                     {children}
                 </div>
             </div>
