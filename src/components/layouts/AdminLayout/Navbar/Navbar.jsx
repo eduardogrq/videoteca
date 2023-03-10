@@ -1,5 +1,6 @@
 
 const Navbar = ({ turnToHidden }) => {
+
     return (
         // {/* Barra de navegación */}
         <nav className="w-full bg-gray-100 h-20 flex items-center justify-between px-8">

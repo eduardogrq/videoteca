@@ -1,19 +1,19 @@
 {
   "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-videoteca-dev-172042-authRole",
-      "UnauthRoleArn": "arn:aws:iam::324115704469:role/amplify-videoteca-dev-172042-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::324115704469:role/amplify-videoteca-dev-172042-authRole",
+      "AuthRoleName": "amplify-videotecalabs-dev-182607-authRole",
+      "UnauthRoleArn": "arn:aws:iam::324115704469:role/amplify-videotecalabs-dev-182607-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::324115704469:role/amplify-videotecalabs-dev-182607-authRole",
       "Region": "us-east-1",
-      "DeploymentBucketName": "amplify-videoteca-dev-172042-deployment",
-      "UnauthRoleName": "amplify-videoteca-dev-172042-unauthRole",
-      "StackName": "amplify-videoteca-dev-172042",
-      "StackId": "arn:aws:cloudformation:us-east-1:324115704469:stack/amplify-videoteca-dev-172042/364b85f0-a807-11ed-b7dc-12e4641f457d",
-      "AmplifyAppId": "dhsmiigruw8ix"
+      "DeploymentBucketName": "amplify-videotecalabs-dev-182607-deployment",
+      "UnauthRoleName": "amplify-videotecalabs-dev-182607-unauthRole",
+      "StackName": "amplify-videotecalabs-dev-182607",
+      "StackId": "arn:aws:cloudformation:us-east-1:324115704469:stack/amplify-videotecalabs-dev-182607/27c82710-beda-11ed-86e7-0a35a40ddd1b",
+      "AmplifyAppId": "d2euysci4h5ya8"
     },
     "categories": {
       "auth": {
-        "videoteca2c5b6ad0": {}
+        "videotecalabs4fb1b448": {}
       }
     }
   }

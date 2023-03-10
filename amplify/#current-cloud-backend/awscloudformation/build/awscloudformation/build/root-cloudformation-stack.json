@@ -152,15 +152,15 @@
         }
       }
     },
-    "authvideoteca2c5b6ad0": {
+    "authvideotecalabs4fb1b448": {
       "Type": "AWS::CloudFormation::Stack",
       "Properties": {
-        "TemplateURL": "https://s3.amazonaws.com/amplify-videoteca-dev-172042-deployment/amplify-cfn-templates/auth/videoteca2c5b6ad0-cloudformation-template.json",
+        "TemplateURL": "https://s3.amazonaws.com/amplify-videotecalabs-dev-182607-deployment/amplify-cfn-templates/auth/videotecalabs4fb1b448-cloudformation-template.json",
         "Parameters": {
-          "identityPoolName": "videoteca2c5b6ad0_identitypool_2c5b6ad0",
+          "identityPoolName": "videotecalabs4fb1b448_identitypool_4fb1b448",
           "allowUnauthenticatedIdentities": false,
-          "resourceNameTruncated": "videot2c5b6ad0",
-          "userPoolName": "videoteca2c5b6ad0_userpool_2c5b6ad0",
+          "resourceNameTruncated": "videot4fb1b448",
+          "userPoolName": "videotecalabs4fb1b448_userpool_4fb1b448",
           "autoVerifiedAttributes": "email",
           "mfaConfiguration": "OFF",
           "mfaTypes": "SMS Text Message",
@@ -177,10 +177,10 @@
           "userpoolClientRefreshTokenValidity": 30,
           "userpoolClientWriteAttributes": "email",
           "userpoolClientReadAttributes": "email",
-          "userpoolClientLambdaRole": "videot2c5b6ad0_userpoolclient_lambda_role",
+          "userpoolClientLambdaRole": "videot4fb1b448_userpoolclient_lambda_role",
           "userpoolClientSetAttributes": false,
-          "sharedId": "2c5b6ad0",
-          "resourceName": "videoteca2c5b6ad0",
+          "sharedId": "4fb1b448",
+          "resourceName": "videotecalabs4fb1b448",
           "authSelections": "identityPoolAndUserPool",
           "useDefault": "default",
           "usernameAttributes": "email",
@@ -210,7 +210,7 @@
       "DependsOn": [
         "AuthRole",
         "UnauthRole",
-        "authvideoteca2c5b6ad0"
+        "authvideotecalabs4fb1b448"
       ],
       "Type": "AWS::Lambda::Function",
       "Properties": {
@@ -305,7 +305,7 @@
         },
         "idpId": {
           "Fn::GetAtt": [
-            "authvideoteca2c5b6ad0",
+            "authvideotecalabs4fb1b448",
             "Outputs.IdentityPoolId"
           ]
         },

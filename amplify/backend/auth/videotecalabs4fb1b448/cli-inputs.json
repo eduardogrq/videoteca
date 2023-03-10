@@ -1,10 +1,10 @@
 {
   "version": "1",
   "cognitoConfig": {
-    "identityPoolName": "videoteca2c5b6ad0_identitypool_2c5b6ad0",
+    "identityPoolName": "videotecalabs4fb1b448_identitypool_4fb1b448",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "videot2c5b6ad0",
-    "userPoolName": "videoteca2c5b6ad0_userpool_2c5b6ad0",
+    "resourceNameTruncated": "videot4fb1b448",
+    "userPoolName": "videotecalabs4fb1b448_userpool_4fb1b448",
     "autoVerifiedAttributes": [
       "email"
     ],
@@ -31,10 +31,10 @@
     "userpoolClientReadAttributes": [
       "email"
     ],
-    "userpoolClientLambdaRole": "videot2c5b6ad0_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "videot4fb1b448_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "2c5b6ad0",
-    "resourceName": "videoteca2c5b6ad0",
+    "sharedId": "4fb1b448",
+    "resourceName": "videotecalabs4fb1b448",
     "authSelections": "identityPoolAndUserPool",
     "useDefault": "default",
     "usernameAttributes": [

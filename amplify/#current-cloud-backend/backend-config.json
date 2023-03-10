@@ -1,6 +1,6 @@
 {
   "auth": {
-    "videoteca2c5b6ad0": {
+    "videotecalabs4fb1b448": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
