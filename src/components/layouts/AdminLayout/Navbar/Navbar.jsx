@@ -1,5 +1,5 @@
 
-import { ArrowDownIcon, NotificationIcon } from "../../../../assets/icons";
+import { BellIcon, ChevronDownIcon } from '@heroicons/react/24/outline'
 
 const Navbar = ({ turnToHidden }) => {
 
@@ -14,7 +14,7 @@ const Navbar = ({ turnToHidden }) => {
             </div>
             <div className='flex items-center text-sm gap-4'>
 
-                <NotificationIcon classes="w-6 h-6 cursor-pointer mr-5 hidden lg:block" />
+                <BellIcon className="w-6 h-6 cursor-pointer" />
 
                 <span className='hidden lg:block'>Eduardo Quiñonez</span>
                 <div className='flex items-center cursor-pointer'>
@@ -22,7 +22,8 @@ const Navbar = ({ turnToHidden }) => {
                         className="rounded-full mr-3"
                         alt=""
                     />
-                    <ArrowDownIcon classes="w-3 h-3" />
+
+                    <ChevronDownIcon className="w-3 h-3" />
                 </div>
 
             </div>
