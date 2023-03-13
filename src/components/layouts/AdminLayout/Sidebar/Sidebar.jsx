@@ -75,7 +75,7 @@ const Sidebar = ({ isHidden, turnToHidden }) => {
                             </ul>
                         </div>
                         {/* Second block */}
-                        <div className="w-full h-1/2 mb-28 flex items-end">
+                        <div className="w-full h-1/2 mb-40 lg:mb-28 flex items-end">
                             <hr className='mb-10' />
                             <div>
                                 <ul className='space-y-10 lg:space-y-8'>
