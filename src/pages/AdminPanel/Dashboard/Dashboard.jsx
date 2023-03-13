@@ -2,6 +2,7 @@
 
 import { AdminLayout } from '../../../components/layouts';
 import { PeopleIcon } from '../../../assets/icons';
+import MicrophoneIcon from '../../../assets/icons/MicrophoneIcon/MicrophoneIcon';
 
 const Dashboard = () => {
 
@@ -35,9 +36,8 @@ const Dashboard = () => {
                 bg-gradient-to-r from-indigo-500 to-purple-500">
                 <div className="h-full flex items-center justify-center gap-4">
                   <div className="h-12 w-12 rounded-md bg-indigo-400 flex justify-center items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z" />
-                    </svg>
+
+                    <MicrophoneIcon classes="w-8 h-8" />
 
                   </div>
                   <div>
