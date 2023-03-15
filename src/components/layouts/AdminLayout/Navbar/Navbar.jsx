@@ -5,12 +5,13 @@ import {
     ChevronDownIcon 
 } from '@heroicons/react/24/outline'
 
-const Navbar = ({ turnToHidden }) => {
+const Navbar = ({ turnToHidden, turnToNotVisible }) => {
 
     return (
         <nav className="w-full bg-white h-20 flex items-center justify-between px-8">
             <div>
-                <Bars3Icon onClick={turnToHidden} className="w-6 h-6 cursor-pointer" />
+                <Bars3Icon onClick={turnToHidden} className="w-6 h-6 cursor-pointer lg:hidden" />
+                <Bars3Icon onClick={turnToNotVisible} className="w-6 h-6 cursor-pointer hidden lg:block" />
             </div>
             <div className='flex items-center text-sm gap-4'>
                 <BellIcon className="w-6 h-6 cursor-pointer" />
